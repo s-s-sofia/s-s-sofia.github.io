@@ -76,6 +76,71 @@
   // Año en el footer
   document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
 
+  // ---------- Calculadora de costo mensual de operación ([data-opex]) ----------
+  const opex = document.querySelector("[data-opex]");
+  if (opex) {
+    const RATE = { svc: 0.0113, util: 0.0113, mkt: 0.074, freeSvc: 1000, min: 0.08, stt: 0.003 };
+    // OpenAI GPT-4o mini, US$ por millón de tokens: entrada, entrada en caché, salida
+    const AI = { in: 0.15, cached: 0.075, out: 0.6 };
+    // Tokens estimados por respuesta del bot: instrucciones + catálogo (caché), conversación, respuesta
+    const TOK = { cached: 3000, input: 1200, output: 200 };
+    const PLANS = [
+      { name: "Pro", fee: 99, mins: 1238 },
+      { name: "Scale", fee: 299, mins: 3738 },
+      { name: "Business", fee: 990, mins: 12375 },
+    ];
+    const num = (k) => Math.max(0, parseFloat(opex.querySelector(`[data-in="${k}"]`).value) || 0);
+    const set = (k, v) => opex.querySelectorAll(`[data-o="${k}"]`).forEach((el) => (el.textContent = v));
+    const int = (n) => Math.round(n).toLocaleString("es-BO");
+
+    const calc = () => {
+      const fx = num("fx") || 12.05;
+      const bs = (usd) => `Bs. ${(usd * fx).toLocaleString("es-BO", { maximumFractionDigits: 0 })}`;
+
+      const orders = num("waOrders");
+      const svcN = orders * num("waMsgs");
+      const svcPaid = Math.max(0, svcN - RATE.freeSvc);
+      const utilN = orders * num("waUtil");
+      const mktN = num("waMkt");
+      const perReply = (TOK.input * AI.in + TOK.cached * AI.cached + TOK.output * AI.out) / 1e6;
+      const notes = num("voiceNotes");
+      const wa = { svc: svcPaid * RATE.svc, util: utilN * RATE.util, mkt: mktN * RATE.mkt, ai: svcN * perReply, stt: notes * 0.5 * RATE.stt };
+      const waTot = wa.svc + wa.util + wa.mkt + wa.ai + wa.stt;
+
+      const mins = num("calls") * num("callMin");
+      const best = PLANS.map((p) => ({ ...p, extra: Math.max(0, mins - p.mins) }))
+        .map((p) => ({ ...p, cost: p.fee + p.extra * RATE.min }))
+        .sort((a, b) => a.cost - b.cost)[0];
+      const voiceTot = mins ? best.cost : 0;
+
+      set("waSvcN", `${int(svcN)} mensajes · ${int(Math.min(svcN, RATE.freeSvc))} gratis`);
+      set("waSvc", bs(wa.svc));
+      set("waUtilN", `${int(utilN)} × US$ 0,0113`);
+      set("waUtil", bs(wa.util));
+      set("waMktN", `${int(mktN)} × US$ 0,074`);
+      set("waMkt", bs(wa.mkt));
+      set("waAiN", `${int(svcN)} respuestas · GPT-4o mini`);
+      set("waAi", bs(wa.ai));
+      set("waSttN", `${int(notes)} notas × 30 s × US$ 0,003/min`);
+      set("waStt", bs(wa.stt));
+      set("waTot", bs(waTot));
+
+      set("plan", mins ? best.name : "—");
+      set("planN", mins ? `${int(best.mins)} min incluidos · US$ ${best.fee}/mes` : "");
+      set("planFee", bs(mins ? best.fee : 0));
+      set("extraN", `${int(mins ? best.extra : 0)} min × US$ 0,08`);
+      set("extra", bs(mins ? best.extra * RATE.min : 0));
+      set("voiceTot", bs(voiceTot));
+      const calls = num("calls");
+      set("perCall", calls ? `Bs. ${((voiceTot / calls) * fx).toLocaleString("es-BO", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : "—");
+
+      set("total", bs(waTot + voiceTot));
+      set("totalUsd", `≈ US$ ${int(waTot + voiceTot)} al mes`);
+    };
+    opex.addEventListener("input", calc);
+    calc();
+  }
+
   // ---------- Calculadora de cotización ----------
   // Cada fila con [data-price] suma al total; las opcionales llevan un checkbox.
   const table = document.querySelector("table.items");

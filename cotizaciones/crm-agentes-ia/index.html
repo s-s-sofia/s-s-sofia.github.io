@@ -64,6 +64,8 @@
               <li><b>Agente IA de texto:</b> atiende por WhatsApp y chat web, responde consultas de productos, toma reservas e informa el estado del pedido.</li>
               <li><b>Integración con PBX telefónica:</b> el agente de voz se conecta a la central telefónica de Sofía, recibe las llamadas y las transfiere a internos o asesores cuando hace falta.</li>
               <li><b>Integración con Meta Business:</b> conexión oficial con WhatsApp Business API para atender, confirmar pedidos y enviar notificaciones desde el número de Sofía.</li>
+              <li><b>Instalación de n8n en local:</b> plataforma de automatización instalada en los servidores de Sofía, que conecta el CRM, los agentes IA, WhatsApp y la PBX sin depender de servicios externos.</li>
+              <li><b>Servidor de archivos FTP/SFTP:</b> repositorio propio para imágenes de productos, grabaciones de llamadas y documentos (comprobantes y detalles de pedido), organizado y con acceso controlado.</li>
               <li><b>Desarrollo a medida:</b> construido sobre los procesos, productos y reglas de negocio de Sofía.</li>
               <li><b>Entrega del código fuente:</b> repositorio completo, documentación técnica y capacitación al equipo de Sofía.</li>
             </ul>
@@ -233,6 +235,8 @@ Ante cualquier eventualidad con el pedido, te notificaremos mediante mensaje.
                   <tr data-price="14000"><td>Agente IA de texto<small>WhatsApp y chat web, consultas, reservas y estado del pedido</small></td><td>3 sem.</td><td class="num" data-cell="price"></td></tr>
                   <tr data-price="7000"><td>Integración con PBX telefónica<small>Conexión del agente de voz a la central de Sofía (SIP/troncales), transferencia a internos y registro de llamadas</small></td><td>2 sem.</td><td class="num" data-cell="price"></td></tr>
                   <tr data-price="5000"><td>Integración con Meta Business (WhatsApp)<small>WhatsApp Business API: número oficial, plantillas de mensajes y avisos automáticos al cliente</small></td><td>2 sem.</td><td class="num" data-cell="price"></td></tr>
+                  <tr data-price="0" data-label="Sin costo"><td>Instalación de n8n en servidor local<small>n8n autoalojado en la infraestructura de Sofía: base de datos, usuarios, copias de seguridad y flujos de automatización entre el CRM, los agentes y los canales</small></td><td>1 sem.</td><td class="num" data-cell="price"></td></tr>
+                  <tr data-price="0" data-label="Sin costo"><td>Servidor de archivos FTP/SFTP<small>Almacenamiento de imágenes de productos, grabaciones de llamadas y documentos, con carpetas por tipo, permisos por usuario y conexión segura</small></td><td>1 sem.</td><td class="num" data-cell="price"></td></tr>
                   <tr data-price="4000"><td>Entrega del código fuente<small>Repositorio, documentación técnica y capacitación</small></td><td>1 sem.</td><td class="num" data-cell="price"></td></tr>
                   <tr data-price="0" data-label="Incluido"><td>Mantenimiento 3 meses<small>Sin costo tras la puesta en producción · monitoreo, ajustes de los agentes y actualizaciones</small></td><td>3 meses</td><td class="num" data-cell="price"></td></tr>
                   <tr data-price="8000"><td><label><input type="checkbox"> Llamadas salientes con IA</label><small>Opcional · confirmación de pedidos y recordatorios</small></td><td>2 sem.</td><td class="num" data-cell="price"></td></tr>
@@ -240,6 +244,73 @@ Ante cualquier eventualidad con el pedido, te notificaremos mediante mensaje.
                 </tbody>
               </table>
             </div>
+          </div>
+
+          <div class="card reveal" id="costos-operacion">
+            <h2>Costo mensual de <em>operación</em></h2>
+            <p class="card__lead">Estimación del consumo que Sofía paga directamente a Meta (WhatsApp) y ElevenLabs (voz). No forma parte del precio del proyecto. Ajuste los volúmenes para ver el costo al instante.</p>
+
+            <div class="opex" data-opex>
+              <div class="opex__inputs">
+                <fieldset>
+                  <legend>WhatsApp</legend>
+                  <label>Pedidos por WhatsApp al mes<input type="number" min="0" step="100" value="2000" data-in="waOrders"></label>
+                  <label>Mensajes del agente por pedido<input type="number" min="1" step="1" value="6" data-in="waMsgs"></label>
+                  <label>Avisos de plantilla por pedido<small>Confirmación / en camino</small><input type="number" min="0" step="1" value="1" data-in="waUtil"></label>
+                  <label>Mensajes de marketing al mes<small>Ofertas y promociones</small><input type="number" min="0" step="100" value="0" data-in="waMkt"></label>
+                </fieldset>
+                <fieldset>
+                  <legend>OpenAI · bot de WhatsApp (GPT-4o mini)</legend>
+                  <label>Notas de voz al mes<small>Se transcriben a texto (≈ 30 s cada una)</small><input type="number" min="0" step="100" value="600" data-in="voiceNotes"></label>
+                </fieldset>
+                <fieldset>
+                  <legend>Llamadas</legend>
+                  <label>Llamadas al mes<input type="number" min="0" step="100" value="1000" data-in="calls"></label>
+                  <label>Minutos promedio por llamada<input type="number" min="0.5" step="0.5" value="2" data-in="callMin"></label>
+                  <label>Tipo de cambio (Bs. por US$)<small>Oficial BCB al 29/09/2026</small><input type="number" min="1" step="0.01" value="12.05" data-in="fx"></label>
+                </fieldset>
+              </div>
+
+              <div class="opex__results">
+                <div class="opex__block">
+                  <h3>WhatsApp · Meta</h3>
+                  <div class="summary__row"><span>Mensajes de servicio<small data-o="waSvcN"></small></span><span data-o="waSvc"></span></div>
+                  <div class="summary__row"><span>Plantillas de utilidad<small data-o="waUtilN"></small></span><span data-o="waUtil"></span></div>
+                  <div class="summary__row"><span>Marketing<small data-o="waMktN"></small></span><span data-o="waMkt"></span></div>
+                  <div class="summary__row"><span>OpenAI · respuestas del bot<small data-o="waAiN"></small></span><span data-o="waAi"></span></div>
+                  <div class="summary__row"><span>OpenAI · notas de voz<small data-o="waSttN"></small></span><span data-o="waStt"></span></div>
+                  <div class="summary__row opex__sub"><span>Subtotal WhatsApp</span><span data-o="waTot"></span></div>
+                </div>
+                <div class="opex__block">
+                  <h3>Voz · ElevenLabs</h3>
+                  <div class="summary__row"><span>Plan <b data-o="plan"></b><small data-o="planN"></small></span><span data-o="planFee"></span></div>
+                  <div class="summary__row"><span>Minutos adicionales<small data-o="extraN"></small></span><span data-o="extra"></span></div>
+                  <div class="summary__row opex__sub"><span>Subtotal voz</span><span data-o="voiceTot"></span></div>
+                  <div class="summary__row"><span>Costo por llamada</span><span data-o="perCall"></span></div>
+                </div>
+                <div class="opex__total">
+                  <small>Costo mensual estimado</small>
+                  <b data-o="total"></b>
+                  <span data-o="totalUsd"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table class="rates">
+                <thead><tr><th>Tarifa de referencia</th><th class="num">US$</th></tr></thead>
+                <tbody>
+                  <tr><td>WhatsApp · mensaje de servicio (respuestas del agente)<small>Desde el 1/10/2026: 1.000 gratis por número al mes, luego se cobra cada mensaje</small></td><td class="num">0,0113</td></tr>
+                  <tr><td>WhatsApp · plantilla de utilidad (confirmaciones, avisos)<small>Desde el 1/10/2026 también se cobra dentro de la ventana de 24 h</small></td><td class="num">0,0113</td></tr>
+                  <tr><td>WhatsApp · plantilla de marketing (ofertas)</td><td class="num">0,0740</td></tr>
+                  <tr><td>ElevenLabs · minuto de llamada adicional (incluye voz y LLM)<small>Planes: Pro US$ 99 (1.238 min) · Scale US$ 299 (3.738 min) · Business US$ 990 (12.375 min)</small></td><td class="num">0,08</td></tr>
+                  <tr><td>OpenAI · GPT-4o mini, por millón de tokens<small>Entrada US$ 0,15 · entrada en caché US$ 0,075 · salida US$ 0,60</small></td><td class="num">0,15 / 0,60</td></tr>
+                  <tr><td>OpenAI · consumo estimado por respuesta del bot<small>≈ 3.000 tokens de instrucciones y catálogo (en caché) + 1.200 de conversación + 200 de respuesta</small></td><td class="num">≈ 0,0005</td></tr>
+                  <tr><td>OpenAI · transcripción de notas de voz (gpt-4o-mini-transcribe)</td><td class="num">0,003 / min</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="card__note">Tarifas de Meta para Bolivia vigentes desde el 1/10/2026 y precios públicos de ElevenLabs Agents a septiembre de 2026. Tipo de cambio oficial del Banco Central de Bolivia (flotante): Bs 12,05 por US$ al 29/09/2026; actualícelo al momento de la firma. No incluye el costo de las líneas telefónicas de la PBX de Sofía. Los valores iniciales son supuestos: ajústelos con los volúmenes reales.</p>
           </div>
 
           <div class="card reveal">
@@ -256,8 +327,9 @@ Ante cualquier eventualidad con el pedido, te notificaremos mediante mensaje.
             <ul class="check">
               <li>Plazo estimado de entrega: 12 semanas desde la firma (algunas fases se ejecutan en paralelo).</li>
               <li>El código fuente y la documentación pasan a ser propiedad de Sofía Ltda. al completar el pago.</li>
+              <li>Sofía Ltda. provee el servidor o máquina virtual donde se instalan n8n y el servidor de archivos (Linux, con espacio de almacenamiento acorde al volumen de grabaciones e imágenes).</li>
               <li>Sofía Ltda. provee el acceso a su PBX (SIP/API) y una cuenta de Meta Business verificada para WhatsApp; Servisofts SRL acompaña la configuración.</li>
-              <li>El consumo de servicios de IA, telefonía y WhatsApp se factura según uso y no está incluido en este monto.</li>
+              <li>El consumo de servicios de IA, telefonía y WhatsApp se factura según uso y no está incluido en este monto (ver <a href="#costos-operacion">costo mensual de operación</a>).</li>
               <li>Incluye 3 meses de mantenimiento sin costo; desde el mes 4, el mantenimiento es de (Bs. 3000 mensuales Opcional).</li>
               <li>Garantía de 3 meses sobre errores de funcionamiento tras la puesta en producción.</li>
               <li>Montos expresados en bolivianos (Bs.).</li>
