@@ -25,9 +25,12 @@
 
 html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 
+html { overflow-x: hidden; overflow-x: clip; }
+
 body {
   margin: 0;
   overflow-x: hidden;
+  overflow-x: clip;
   font-family: var(--sans);
   color: var(--ink);
   background: var(--white);
