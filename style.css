@@ -680,6 +680,48 @@ table.items { width: 100%; min-width: 560px; border-collapse: collapse; font-siz
 .sign div { padding-top: 60px; border-top: 1px solid var(--ink); font-size: 13px; color: var(--muted); }
 .sign b { display: block; color: var(--ink); font-size: 15px; }
 
+/* ---------- Dashboards de KPIs ---------- */
+.kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
+.kpi { padding: 18px 20px; border-radius: 18px; border: 1px solid var(--line); }
+.kpi:nth-child(1), .kpi:nth-child(4) { background: var(--paper); }
+.kpi__head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.kpi__head b { font: 600 20px var(--display); }
+.kpi__icon { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; background: var(--red); color: var(--white); }
+.kpi ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 14px; }
+.kpi li { position: relative; padding-left: 16px; }
+.kpi li::before { content: ""; position: absolute; left: 0; top: .6em; width: 7px; height: 7px; background: var(--red); border-radius: 2px; }
+.kpis__foot { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.kpis__foot span { padding: 6px 12px; border-radius: var(--pill); background: #fde9ea; color: var(--red); font-size: 12px; font-weight: 700; }
+@media (max-width: 640px) { .kpis { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Tecnologías ---------- */
+.stack { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 20px; }
+@media (max-width: 640px) { .stack { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.stack__item {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  align-content: start;
+  padding: 16px 14px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: var(--white);
+}
+.stack__tag { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.stack__item b { font: 600 20px/1.15 var(--display); }
+.stack__item small { font-size: 13px; color: var(--muted); line-height: 1.4; }
+.stack__item em {
+  justify-self: start;
+  margin-top: 8px;
+  padding: 4px 10px;
+  border-radius: var(--pill);
+  background: var(--red);
+  color: var(--white);
+  font: 700 11px var(--sans);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
 /* ---------- Casos reales: audios y chats ---------- */
 .card__lead { color: var(--muted); max-width: 62ch; }
 .card__sub {

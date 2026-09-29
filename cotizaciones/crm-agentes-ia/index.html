@@ -64,11 +64,49 @@
               <li><b>Agente IA de texto:</b> atiende por WhatsApp y chat web, responde consultas de productos, toma reservas e informa el estado del pedido.</li>
               <li><b>Integración con PBX telefónica:</b> el agente de voz se conecta a la central telefónica de Sofía, recibe las llamadas y las transfiere a internos o asesores cuando hace falta.</li>
               <li><b>Integración con Meta Business:</b> conexión oficial con WhatsApp Business API para atender, confirmar pedidos y enviar notificaciones desde el número de Sofía.</li>
+              <li><b>Dashboards de KPIs:</b> indicadores mes a mes de llamadas, mensajes de WhatsApp, clientes y pedidos, con comparación entre meses y exportación a Excel.</li>
               <li><b>Instalación de n8n en local:</b> plataforma de automatización instalada en los servidores de Sofía, que conecta el CRM, los agentes IA, WhatsApp y la PBX sin depender de servicios externos.</li>
               <li><b>Servidor de archivos FTP/SFTP:</b> repositorio propio para imágenes de productos, grabaciones de llamadas y documentos (comprobantes y detalles de pedido), organizado y con acceso controlado.</li>
               <li><b>Desarrollo a medida:</b> construido sobre los procesos, productos y reglas de negocio de Sofía.</li>
               <li><b>Entrega del código fuente:</b> repositorio completo, documentación técnica y capacitación al equipo de Sofía.</li>
             </ul>
+          </div>
+
+          <div class="card reveal" id="dashboards">
+            <h2>Dashboards de <em>KPIs</em></h2>
+            <p class="card__lead">Un panel en el CRM con los indicadores clave de cada mes, para que Sofía vea cómo evoluciona la atención y las ventas.</p>
+            <div class="kpis">
+              <div class="kpi">
+                <div class="kpi__head"><span class="kpi__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span><b>Llamadas</b></div>
+                <ul><li>Llamadas recibidas por mes</li><li>Atendidas por el agente IA vs. derivadas a asesor</li><li>Duración promedio</li><li>Horas y días de mayor demanda</li></ul>
+              </div>
+              <div class="kpi">
+                <div class="kpi__head"><span class="kpi__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span><b>Mensajes</b></div>
+                <ul><li>Conversaciones y mensajes de WhatsApp por mes</li><li>Tiempo de respuesta</li><li>Notas de voz recibidas</li><li>Consultas que terminan en pedido</li></ul>
+              </div>
+              <div class="kpi">
+                <div class="kpi__head"><span class="kpi__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6"/></svg></span><b>Clientes</b></div>
+                <ul><li>Clientes activos por mes</li><li>Nuevos vs. recurrentes</li><li>Clientes por ciudad</li><li>Clientes sin pedidos recientes</li></ul>
+              </div>
+              <div class="kpi">
+                <div class="kpi__head"><span class="kpi__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></span><b>Pedidos</b></div>
+                <ul><li>Pedidos por mes y por canal</li><li>Monto total reservado</li><li>Productos más pedidos</li><li>Pedidos confirmados, ajustados y cancelados</li></ul>
+              </div>
+            </div>
+            <div class="kpis__foot"><span>Filtro por mes</span><span>Comparación mes a mes</span><span>Exportación a Excel</span><span>Acceso por roles</span></div>
+          </div>
+
+          <div class="card reveal" id="tecnologias">
+            <h2>Tecnologías <em>sin costo de licencia</em></h2>
+            <p class="card__lead">La plataforma se construye con software libre y de código abierto: Sofía no paga licencias, suscripciones ni cargos extra por ninguno de estos componentes.</p>
+            <div class="stack">
+              <div class="stack__item"><span class="stack__tag">Base de datos</span><b>PostgreSQL</b><small>Pedidos, clientes, catálogo e historial</small><em>Sin costo</em></div>
+              <div class="stack__item"><span class="stack__tag">Backend</span><b>Python</b><small>API del CRM, lógica de reservas e integraciones</small><em>Sin costo</em></div>
+              <div class="stack__item"><span class="stack__tag">Frontend</span><b>React</b><small>Panel web del CRM para el equipo de Sofía</small><em>Sin costo</em></div>
+              <div class="stack__item"><span class="stack__tag">Automatización</span><b>n8n</b><small>Edición autoalojada en los servidores de Sofía</small><em>Sin costo</em></div>
+              <div class="stack__item"><span class="stack__tag">Archivos</span><b>SFTP</b><small>Servidor de imágenes, grabaciones y documentos</small><em>Sin costo</em></div>
+              <div class="stack__item"><span class="stack__tag">Despliegue</span><b>Docker</b><small>Contenedores para instalar, actualizar y respaldar todo en los servidores de Sofía</small><em>Sin costo</em></div>
+            </div>
           </div>
 
           <div class="card reveal" id="casos">
@@ -235,8 +273,7 @@ Ante cualquier eventualidad con el pedido, te notificaremos mediante mensaje.
                   <tr data-price="14000"><td>Agente IA de texto<small>WhatsApp y chat web, consultas, reservas y estado del pedido</small></td><td>3 sem.</td><td class="num" data-cell="price"></td></tr>
                   <tr data-price="7000"><td>Integración con PBX telefónica<small>Conexión del agente de voz a la central de Sofía (SIP/troncales), transferencia a internos y registro de llamadas</small></td><td>2 sem.</td><td class="num" data-cell="price"></td></tr>
                   <tr data-price="5000"><td>Integración con Meta Business (WhatsApp)<small>WhatsApp Business API: número oficial, plantillas de mensajes y avisos automáticos al cliente</small></td><td>2 sem.</td><td class="num" data-cell="price"></td></tr>
-                  <tr data-price="0" data-label="Sin costo"><td>Instalación de n8n en servidor local<small>n8n autoalojado en la infraestructura de Sofía: base de datos, usuarios, copias de seguridad y flujos de automatización entre el CRM, los agentes y los canales</small></td><td>1 sem.</td><td class="num" data-cell="price"></td></tr>
-                  <tr data-price="0" data-label="Sin costo"><td>Servidor de archivos FTP/SFTP<small>Almacenamiento de imágenes de productos, grabaciones de llamadas y documentos, con carpetas por tipo, permisos por usuario y conexión segura</small></td><td>1 sem.</td><td class="num" data-cell="price"></td></tr>
+                  <tr data-price="0" data-label="Incluido"><td>Dashboards de KPIs<small>Llamadas, mensajes, clientes y pedidos por mes · comparación mes a mes · exportación a Excel</small></td><td>2 sem.</td><td class="num" data-cell="price"></td></tr>
                   <tr data-price="4000"><td>Entrega del código fuente<small>Repositorio, documentación técnica y capacitación</small></td><td>1 sem.</td><td class="num" data-cell="price"></td></tr>
                   <tr data-price="0" data-label="Incluido"><td>Mantenimiento 3 meses<small>Sin costo tras la puesta en producción · monitoreo, ajustes de los agentes y actualizaciones</small></td><td>3 meses</td><td class="num" data-cell="price"></td></tr>
                   <tr data-price="8000"><td><label><input type="checkbox"> Llamadas salientes con IA</label><small>Opcional · confirmación de pedidos y recordatorios</small></td><td>2 sem.</td><td class="num" data-cell="price"></td></tr>
@@ -334,6 +371,7 @@ Ante cualquier eventualidad con el pedido, te notificaremos mediante mensaje.
               <li>Plazo estimado de entrega: 16 semanas (4 meses) desde la firma.</li>
               <li>Pago en 4 cuotas mensuales iguales; la primera a la firma y las siguientes al inicio de cada mes de desarrollo.</li>
               <li>El código fuente y la documentación pasan a ser propiedad de Sofía Ltda. al completar el pago.</li>
+              <li>Tecnologías de código abierto (PostgreSQL, Python, React, n8n, SFTP y Docker): sin costo de licencias ni suscripciones.</li>
               <li>Sofía Ltda. provee el servidor o máquina virtual donde se instalan n8n y el servidor de archivos (Linux, con espacio de almacenamiento acorde al volumen de grabaciones e imágenes).</li>
               <li>Sofía Ltda. provee el acceso a su PBX (SIP/API) y una cuenta de Meta Business verificada para WhatsApp; Servisofts SRL acompaña la configuración.</li>
               <li>El consumo de servicios externos (WhatsApp de Meta, OpenAI y ElevenLabs) no está incluido en este monto ni se paga a Servisofts SRL: Sofía lo paga directamente a cada proveedor, con cuentas a su nombre (ver <a href="#costos-operacion">costo mensual de operación</a>).</li>
@@ -360,9 +398,9 @@ Ante cualquier eventualidad con el pedido, te notificaremos mediante mensaje.
             <div class="summary__row"><span><b>Total</b></span><span data-out="total">—</span></div>
             <div class="summary__row"><span>Cuota mensual <small>4 meses de desarrollo</small></span><span data-installment="4">—</span></div>
             <div class="summary__row summary__row--monthly"><span>Mantenimiento tras la puesta en producción<small>3 primeros meses sin costo</small></span><span>Bs. 3.000/mes</span></div>
-            <button class="btn btn--red no-print" onclick="window.print()">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2M8 14h8v7H8z"/></svg>
-              Imprimir / PDF
+            <button class="btn btn--red no-print" data-pdf-download>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+              Descargar PDF
             </button>
             <a class="btn btn--ghost no-print" href="../index.html" style="justify-content:center">Otras cotizaciones</a>
             <p class="summary__note">Marque los opcionales en la tabla para actualizar el total.</p>
@@ -383,5 +421,6 @@ Ante cualquier eventualidad con el pedido, te notificaremos mediante mensaje.
   </footer>
 
   <script src="../../index.js?v=20260929"></script>
+  <script src="../cotizacion-pdf.js?v=20260929"></script>
 </body>
 </html>
