@@ -248,7 +248,11 @@ Ante cualquier eventualidad con el pedido, te notificaremos mediante mensaje.
 
           <div class="card reveal" id="costos-operacion">
             <h2>Costo mensual de <em>operación</em></h2>
-            <p class="card__lead">Estimación del consumo que Sofía paga directamente a Meta (WhatsApp) y ElevenLabs (voz). No forma parte del precio del proyecto. Ajuste los volúmenes para ver el costo al instante.</p>
+            <p class="card__lead">Estimación del consumo mensual de los servicios externos que usa la plataforma. Ajuste los volúmenes para ver el costo al instante.</p>
+            <div class="notice">
+              <span class="notice__icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg></span>
+              <div><b>Este costo no se paga a Servisofts SRL.</b> Sofía lo paga directamente a cada proveedor (Meta por WhatsApp, OpenAI y ElevenLabs), con cuentas a nombre de Sofía y su propio medio de pago. Servisofts SRL solo configura las cuentas y no cobra comisión sobre el consumo.</div>
+            </div>
 
             <div class="opex" data-opex>
               <div class="opex__inputs">
@@ -260,7 +264,7 @@ Ante cualquier eventualidad con el pedido, te notificaremos mediante mensaje.
                   <label>Mensajes de marketing al mes<small>Ofertas y promociones</small><input type="number" min="0" step="100" value="0" data-in="waMkt"></label>
                 </fieldset>
                 <fieldset>
-                  <legend>OpenAI · bot de WhatsApp (GPT-4o mini)</legend>
+                  <legend>OpenAI · GPT-4o mini</legend>
                   <label>Notas de voz al mes<small>Se transcriben a texto (≈ 30 s cada una)</small><input type="number" min="0" step="100" value="600" data-in="voiceNotes"></label>
                 </fieldset>
                 <fieldset>
@@ -289,7 +293,7 @@ Ante cualquier eventualidad con el pedido, te notificaremos mediante mensaje.
                   <div class="summary__row"><span>Costo por llamada</span><span data-o="perCall"></span></div>
                 </div>
                 <div class="opex__total">
-                  <small>Costo mensual estimado</small>
+                  <small>Costo mensual estimado · pagado por Sofía a los proveedores</small>
                   <b data-o="total"></b>
                   <span data-o="totalUsd"></span>
                 </div>
@@ -332,7 +336,7 @@ Ante cualquier eventualidad con el pedido, te notificaremos mediante mensaje.
               <li>El código fuente y la documentación pasan a ser propiedad de Sofía Ltda. al completar el pago.</li>
               <li>Sofía Ltda. provee el servidor o máquina virtual donde se instalan n8n y el servidor de archivos (Linux, con espacio de almacenamiento acorde al volumen de grabaciones e imágenes).</li>
               <li>Sofía Ltda. provee el acceso a su PBX (SIP/API) y una cuenta de Meta Business verificada para WhatsApp; Servisofts SRL acompaña la configuración.</li>
-              <li>El consumo de servicios de IA, telefonía y WhatsApp se factura según uso y no está incluido en este monto (ver <a href="#costos-operacion">costo mensual de operación</a>).</li>
+              <li>El consumo de servicios externos (WhatsApp de Meta, OpenAI y ElevenLabs) no está incluido en este monto ni se paga a Servisofts SRL: Sofía lo paga directamente a cada proveedor, con cuentas a su nombre (ver <a href="#costos-operacion">costo mensual de operación</a>).</li>
               <li>Incluye 3 meses de mantenimiento sin costo tras la puesta en producción; desde el 4.º mes en producción, el mantenimiento es de Bs. 3.000 mensuales (opcional).</li>
               <li>Garantía de 3 meses sobre errores de funcionamiento tras la puesta en producción.</li>
               <li>Montos expresados en bolivianos (Bs.).</li>
