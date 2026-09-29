@@ -595,11 +595,11 @@ a { color: inherit; }
 /* Documento de cotización */
 .doc {
   display: grid;
-  grid-template-columns: 1fr 340px;
+  grid-template-columns: minmax(0, 1fr) 340px;
   gap: 30px;
   align-items: start;
 }
-.doc__main { display: grid; gap: 24px; }
+.doc__main { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
 .card {
   padding: clamp(24px, 4vw, 40px);
   background: var(--white);
@@ -755,7 +755,6 @@ table.items { width: 100%; min-width: 560px; border-collapse: collapse; font-siz
 
 @media (max-width: 560px) {
   .audio { grid-template-columns: minmax(0, 1fr); gap: 8px; }
-  .chat__stats { grid-template-columns: minmax(0, 1fr); }
   .chat { padding: 12px; }
   .chat__msg { max-width: 90%; }
 }
@@ -781,7 +780,7 @@ table.items { width: 100%; min-width: 560px; border-collapse: collapse; font-siz
   .step h3 { margin-top: 4px; }
   .step > :not(.step__dot) { grid-column: 2; }
   .step__dot { grid-row: span 3; }
-  .doc { grid-template-columns: 1fr; }
+  .doc { grid-template-columns: minmax(0, 1fr); }
   .summary { position: static; }
 }
 
@@ -825,6 +824,46 @@ table.items { width: 100%; min-width: 560px; border-collapse: collapse; font-siz
   .hero__badge { right: 16px; bottom: 16px; }
 }
 
+/* Cotización en móvil: tabla apilada y bloques compactos */
+@media (max-width: 640px) {
+  .card { padding: 22px 18px; border-radius: 22px; }
+  .card h2 { font-size: 24px; }
+  .doc__meta { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .doc__meta div { padding: 12px 14px; }
+  .doc__meta b { font-size: 14px; }
+
+  .table-wrap { overflow: visible; margin: 0; }
+  table.items { min-width: 0; }
+  .items thead { display: none; }
+  .items, .items tbody { display: block; }
+  .items tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .items td { padding: 0; border: 0; }
+  .items td:first-child { grid-column: 1 / -1; margin-bottom: 6px; }
+  .items td:nth-child(2) { font-size: 13px; color: var(--muted); }
+  .items td.num { font-weight: 600; }
+
+  .payments { gap: 10px; }
+  .payment { padding: 16px 18px; }
+  .payment b { font-size: 28px; }
+
+  .chat__stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .chat__stats div { padding: 10px; }
+  .chat__stats b { font-size: 16px; }
+  .chat__stats span { font-size: 11px; line-height: 1.3; display: block; }
+  .chat { max-height: 480px; }
+
+  .summary__head { padding: 22px 20px; }
+  .summary__body { padding: 20px; }
+  .page-hero { padding-top: 124px; }
+  .page-hero__strip { left: 0; right: 0; bottom: auto; top: 76px; width: auto; height: 24px; opacity: 1; --check: 12px; mask-image: none; -webkit-mask-image: none; }
+}
+
 /* ---------- Impresión (cotizaciones a PDF) ---------- */
 @media print {
   .chat { max-height: none; overflow: visible; }
@@ -833,7 +872,7 @@ table.items { width: 100%; min-width: 560px; border-collapse: collapse; font-siz
   .nav, .footer, .no-print, .page-hero__strip { display: none !important; }
   .page-hero { padding: 0 0 20px; }
   .section { padding-block: 10px; }
-  .doc { grid-template-columns: 1fr; }
+  .doc { grid-template-columns: minmax(0, 1fr); }
   .summary { position: static; }
   .card { break-inside: avoid; border-color: #ddd; }
   .reveal { opacity: 1; transform: none; }
