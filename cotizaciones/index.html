@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google" content="notranslate">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Cotizaciones | Servisofts × Sofía</title>
+  <link rel="icon" href="../image/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="nav__brand" href="../index.html" aria-label="Inicio">
+        <img src="../image/logo.png" alt="Sofía">
+        <small>En Sofía<br>se confía</small>
+      </a>
+      <button class="nav__toggle" aria-label="Abrir menú" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+      </button>
+      <ul class="nav__links">
+        <li><a href="../index.html#presentacion">Presentación</a></li>
+        <li><a href="../index.html#nosotros">Nosotros</a></li>
+        <li><a href="../index.html#servicios">Servicios</a></li>
+        <li><a href="../index.html#metodologia">Metodología</a></li>
+        <li><a class="nav__cta" href="index.html">Cotizaciones
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-hero__strip checker checker--drift" aria-hidden="true"></div>
+      <div class="wrap">
+        <nav class="breadcrumb"><a href="../index.html">Presentación</a> / Cotizaciones</nav>
+        <h1 class="display reveal">Nuestras <em>cotizaciones</em> para Sofía.</h1>
+        <p class="lead reveal" data-delay="1">Cada documento detalla alcance, entregables, plazos y condiciones de pago. Puede ajustar los módulos opcionales y ver el total al instante.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:20px">
+      <div class="wrap">
+        <div class="quotes-grid">
+          <a class="qcard reveal" href="crm-agentes-ia/">
+            <div class="qcard__top"><span class="qcard__code">COT-2026-001</span><span class="tag tag--solid">Vigente</span></div>
+            <h3>CRM de reservas con agentes IA</h3>
+            <p>Plataforma de reserva de pedidos con agentes de voz y texto, desarrollo a medida y entrega del código fuente.</p>
+            <div class="qcard__foot">
+              <div class="qcard__price"><small>Desde</small><b>Bs. 81.000</b></div>
+              <span class="qcard__arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </div>
+          </a>
+
+          <!-- Para agregar una cotización: duplique la carpeta crm-agentes-ia/, cambie el contenido
+               y copie esta tarjeta como <a class="qcard" href="nuevo-archivo.html">…</a> -->
+          <div class="qcard qcard--soon reveal" data-delay="1">
+            <div class="qcard__top"><span class="qcard__code">COT-2026-002</span><span class="tag tag--muted">En preparación</span></div>
+            <h3>Próxima cotización</h3>
+            <p>Espacio reservado para un nuevo documento de propuesta.</p>
+            <div class="qcard__foot"><div class="qcard__price"><small>Monto</small><b>—</b></div><span class="qcard__arrow"></span></div>
+          </div>
+          <div class="qcard qcard--soon reveal" data-delay="2">
+            <div class="qcard__top"><span class="qcard__code">COT-2026-003</span><span class="tag tag--muted">En preparación</span></div>
+            <h3>Próxima cotización</h3>
+            <p>Espacio reservado para un nuevo documento de propuesta.</p>
+            <div class="qcard__foot"><div class="qcard__price"><small>Monto</small><b>—</b></div><span class="qcard__arrow"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div class="footer__brand">
+        <img src="../image/logo.png" alt="Sofía">
+        <div>Propuesta preparada para <b>Sofía Ltda.</b><br>por <b>Servisofts SRL</b></div>
+      </div>
+      <div>© <span data-year>2026</span> Servisofts SRL · Documento confidencial</div>
+    </div>
+  </footer>
+
+  <script src="../index.js"></script>
+</body>
+</html>
