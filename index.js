@@ -177,6 +177,9 @@
     out("subtotal", fmt(subtotal));
     out("tax", fmt(tax));
     out("total", fmt(subtotal + tax));
+    document.querySelectorAll("[data-installment]").forEach((el) => {
+      el.textContent = fmt((subtotal + tax) / parseFloat(el.dataset.installment));
+    });
     document.querySelectorAll("[data-split]").forEach((el) => {
       el.textContent = fmt((subtotal + tax) * parseFloat(el.dataset.split));
     });
