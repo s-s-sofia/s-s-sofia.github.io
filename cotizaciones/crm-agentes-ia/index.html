@@ -9,7 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../style.css?v=20260929">
+  <link rel="stylesheet" href="../../style.css?v=20261006">
+  <link rel="stylesheet" href="crm-demo.css?v=20261006d">
 </head>
 <body>
 
@@ -35,11 +36,11 @@
 
   <main>
     <section class="page-hero">
-      <div class="page-hero__strip checker checker--drift" aria-hidden="true"></div>
       <div class="wrap">
         <nav class="breadcrumb"><a href="../../index.html">Presentación</a> / <a href="../index.html">Cotizaciones</a> / COT-2026-001</nav>
         <h1 class="display reveal">CRM de reservas con <em>agentes IA</em></h1>
         <p class="lead reveal" data-delay="1">Plataforma de reserva de pedidos atendida por agentes de inteligencia artificial de voz y texto. Desarrollo a medida para Sofía Ltda. con entrega del código fuente.</p>
+        <a class="btn btn--red reveal" data-delay="2" href="#demo-crm" style="margin-top:22px;position:relative">Ver demo del CRM →</a>
       </div>
     </section>
 
@@ -107,156 +108,6 @@
               <div class="stack__item"><span class="stack__tag">Archivos</span><b>SFTP</b><small>Servidor de imágenes, grabaciones y documentos</small><em>Sin costo</em></div>
               <div class="stack__item"><span class="stack__tag">Despliegue</span><b>Docker</b><small>Contenedores para instalar, actualizar y respaldar todo en los servidores de Sofía</small><em>Sin costo</em></div>
             </div>
-          </div>
-
-          <div class="card reveal" id="casos">
-            <h2>Casos reales de <em>atención</em></h2>
-            <p class="card__lead">Ejemplos de cómo se atienden hoy los pedidos por teléfono y WhatsApp. Son la base para diseñar y entrenar a los agentes IA con el lenguaje real de los clientes de Sofía.</p>
-
-            <h3 class="card__sub">Llamadas telefónicas</h3>
-            <div class="audios">
-              <figure class="audio"><figcaption><b>Llamada 1</b><span>18/09/2026 · 1:12</span></figcaption><audio controls preload="none" src="audio_ejemplos/llamada-1.mp3"></audio></figure>
-              <figure class="audio"><figcaption><b>Llamada 2</b><span>18/09/2026 · 1:41</span></figcaption><audio controls preload="none" src="audio_ejemplos/llamada-2.mp3"></audio></figure>
-              <figure class="audio"><figcaption><b>Llamada 3</b><span>21/09/2026 · 0:55</span></figcaption><audio controls preload="none" src="audio_ejemplos/llamada-3.mp3"></audio></figure>
-            </div>
-
-            <h3 class="card__sub">Conversaciones de WhatsApp</h3>
-            <div class="tabs" data-tabs>
-              <div class="tabs__bar" role="tablist">
-                <button role="tab" aria-selected="true" data-tab="chat-1">Santa Cruz · Caso 1</button>
-                <button role="tab" aria-selected="false" data-tab="chat-2">Santa Cruz · Caso 2</button>
-              </div>
-
-              <div class="tabs__panel" id="chat-1">
-                <div class="chat__stats">
-                  <div><b>1 min 18 s</b><span>hasta registrar el pedido</span></div>
-                  <div><b>10</b><span>mensajes</span></div>
-                  <div><b>2</b><span>notas de voz del cliente</span></div>
-                </div>
-                <div class="chat">
-                  <div class="chat__msg chat__msg--in chat__msg--c"><span class="chat__who">Cliente</span><div class="chat__text"><span class="chat__voice"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-2.1A7 7 0 0 0 19 12z"/></svg>Nota de voz</span></div><time>18:20</time></div>
-                  <div class="chat__msg chat__msg--out chat__msg--b"><span class="chat__who">Bot automático</span><div class="chat__text">¡Estamos listos para ayudarte con tu pedido! Solo necesitamos tu confirmación para avanzar
-✅ (Responde con “Sí” para continuar)</div><time>18:21</time></div>
-                  <div class="chat__msg chat__msg--in chat__msg--c"><span class="chat__who">Cliente</span><div class="chat__text">sí</div><time>18:21</time></div>
-                  <div class="chat__msg chat__msg--out chat__msg--b"><span class="chat__who">Bot automático</span><div class="chat__text">Por favor,📍 indica desde que ciudad nos escribes con <b>la letra</b> o <b>palabra</b>:
-
-A - Santa Cruz
-B - Cochabamba
-C - La Paz
-D - Tarija
-E - Beni
-F - El Alto</div><time>18:21</time></div>
-                  <div class="chat__msg chat__msg--in chat__msg--c"><span class="chat__who">Cliente</span><div class="chat__text">A</div><time>18:21</time></div>
-                  <div class="chat__msg chat__msg--out chat__msg--b"><span class="chat__who">Bot automático</span><div class="chat__text">Antes de avanzar, te recordamos que hay montos mínimos por tipo de producto:
-
-❄️ Refrigerados y congelados: Bs 300
-🥚 Huevos: 10 maples
-🥫 Conservas/enlatados: Bs 200
-
-Si tu pedido cumple con el monto mínimo, responde esta información:
-
-1️⃣ CI o NIT (código de cliente):
-2️⃣ Dirección de entrega (solo si tuvieras más de una dirección):
-3️⃣ Día para cuando necesitas el pedido:
-4️⃣ Productos y cantidades que necesita:
-
-✅ Con esta información registraremos tu pedido, según disponibilidad de inventario.
-
-⚠️ En los próximos 8 minutos te enviaremos el detalle de tu pedido, el monto a pagar; y te escribiremos si tuviéramos que realizar ajustes a tu pedido.
-
-¡Gracias por la preferencia!</div><time>18:21</time></div>
-                  <div class="chat__msg chat__msg--in chat__msg--c"><span class="chat__who">Cliente</span><div class="chat__text">2.0-30</div><time>18:21</time></div>
-                  <div class="chat__msg chat__msg--out chat__msg--a"><span class="chat__who">Asesor Sofía</span><div class="chat__text">no hay promocion</div><time>18:21</time></div>
-                  <div class="chat__msg chat__msg--out chat__msg--a"><span class="chat__who">Asesor Sofía</span><div class="chat__text">✅ ¡Pedido registrado con éxito!
-Para: ●●●●●●●● – CLIENTE 1
-📸⚠️ Por favor revisa en la imagen adjunta, el detalle de tu pedido, la fecha de entrega y la dirección registrada.
-
-Ante cualquier eventualidad con el pedido, te notificaremos mediante mensaje.
-<b>Importante:</b> Las condiciones están sujetas a disponibilidad y validación al momento de entrega.
-
-🙏 ¡Gracias por tu preferencia!</div><time>18:22</time></div>
-                  <div class="chat__msg chat__msg--in chat__msg--c"><span class="chat__who">Cliente</span><div class="chat__text"><span class="chat__voice"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-2.1A7 7 0 0 0 19 12z"/></svg>Nota de voz</span></div><time>18:24</time></div>
-                </div>
-              </div>
-
-              <div class="tabs__panel" id="chat-2" hidden>
-                <div class="chat__stats">
-                  <div><b>30 min 41 s</b><span>hasta registrar el pedido</span></div>
-                  <div><b>18</b><span>mensajes</span></div>
-                  <div><b>2</b><span>avisos de “máximo 8 minutos”</span></div>
-                </div>
-                <div class="chat">
-                  <div class="chat__msg chat__msg--in chat__msg--c"><span class="chat__who">Cliente</span><div class="chat__text">ola</div><time>16:56</time></div>
-                  <div class="chat__msg chat__msg--out chat__msg--b"><span class="chat__who">Bot automático</span><div class="chat__text">¡Estamos listos para ayudarte con tu pedido! Solo necesitamos tu confirmación para avanzar
-✅ (Responde con “Sí” para continuar)</div><time>16:56</time></div>
-                  <div class="chat__msg chat__msg--in chat__msg--c"><span class="chat__who">Cliente</span><div class="chat__text">si</div><time>16:57</time></div>
-                  <div class="chat__msg chat__msg--out chat__msg--b"><span class="chat__who">Bot automático</span><div class="chat__text">Por favor,📍 indica desde que ciudad nos escribes con <b>la letra</b> o <b>palabra</b>:
-
-A - Santa Cruz
-B - Cochabamba
-C - La Paz
-D - Tarija
-E - Beni
-F - El Alto</div><time>16:57</time></div>
-                  <div class="chat__msg chat__msg--in chat__msg--c"><span class="chat__who">Cliente</span><div class="chat__text">a</div><time>16:57</time></div>
-                  <div class="chat__msg chat__msg--out chat__msg--b"><span class="chat__who">Bot automático</span><div class="chat__text">Antes de avanzar, te recordamos que hay montos mínimos por tipo de producto:
-
-❄️ Refrigerados y congelados: Bs 300
-🥚 Huevos: 10 maples
-🥫 Conservas/enlatados: Bs 200
-
-Si tu pedido cumple con el monto mínimo, responde esta información:
-
-1️⃣ CI o NIT (código de cliente):
-2️⃣ Dirección de entrega (solo si tuvieras más de una dirección):
-3️⃣ Día para cuando necesitas el pedido:
-4️⃣ Productos y cantidades que necesita:
-
-✅ Con esta información registraremos tu pedido, según disponibilidad de inventario.
-
-⚠️ En los próximos 8 minutos te enviaremos el detalle de tu pedido, el monto a pagar; y te escribiremos si tuviéramos que realizar ajustes a tu pedido.
-
-¡Gracias por la preferencia!</div><time>16:57</time></div>
-                  <div class="chat__msg chat__msg--in chat__msg--c"><span class="chat__who">Cliente</span><div class="chat__text">80 frial mediano para mañana porfa</div><time>16:57</time></div>
-                  <div class="chat__msg chat__msg--out chat__msg--a"><span class="chat__who">Asesor Sofía</span><div class="chat__text">Hola 👋, gracias por tu solicitud.
-🛒 Estamos revisando el inventario y en máximo 8 minutos te enviaremos la confirmación.
-⏱️¡En breve te atenderemos!</div><time>16:59</time></div>
-                  <div class="chat__msg chat__msg--out chat__msg--a"><span class="chat__who">Asesor Sofía</span><div class="chat__text">🔥<b>¡OFERTA ESPECIAL - Bs 2 MENOS!</b>🔥
-
-🍕 Jamón Pizzero al Vacío 1kg
-🥩 Jamón Familiar al Vacío 1 kg
-
-Prácticos y rendidores para:
-
-🍕 Pizzas
-🥪 Sándwiches
-🥖 Paninis y preparaciones calientes
-
-💥 <b>Aprovecha el descuento de 2 Bs.</b>
-
-📲 Consulta precios por aquí para añadir a tu pedido</div><time>16:59</time></div>
-                  <div class="chat__msg chat__msg--in chat__msg--c"><span class="chat__who">Cliente</span><div class="chat__text">🤔</div><time>17:18</time></div>
-                  <div class="chat__msg chat__msg--in chat__msg--c"><span class="chat__who">Cliente</span><div class="chat__text">🤔</div><time>17:18</time></div>
-                  <div class="chat__msg chat__msg--out chat__msg--a"><span class="chat__who">Asesor Sofía</span><div class="chat__text">Hola 👋, gracias por tu solicitud.
-🛒 Estamos revisando el inventario y en máximo 8 minutos te enviaremos la confirmación.
-⏱️¡En breve te atenderemos!</div><time>17:26</time></div>
-                  <div class="chat__msg chat__msg--out chat__msg--a"><span class="chat__who">Asesor Sofía</span><div class="chat__text">✅ ¡Pedido registrado con éxito!
-Para: ●●●●●●●● – CLIENTE 2
-📸⚠️ Por favor revisa en la imagen adjunta, el detalle de tu pedido, la fecha de entrega y la dirección registrada.
-
-Ante cualquier eventualidad con el pedido, te notificaremos mediante mensaje.
-<b>Importante:</b> Las condiciones están sujetas a disponibilidad y validación al momento de entrega.
-
-🙏 ¡Gracias por tu preferencia!</div><time>17:27</time></div>
-                  <div class="chat__msg chat__msg--in chat__msg--c"><span class="chat__who">Cliente</span><div class="chat__text">me lo reenviar porfa</div><time>17:42</time></div>
-                  <div class="chat__msg chat__msg--in chat__msg--c"><span class="chat__who">Cliente</span><div class="chat__text">no descarga</div><time>17:42</time></div>
-                  <div class="chat__msg chat__msg--out chat__msg--a"><span class="chat__who">Asesor Sofía</span><div class="chat__text">Se envía la captura del pedido</div><time>17:42</time></div>
-                  <div class="chat__msg chat__msg--in chat__msg--c"><span class="chat__who">Cliente</span><div class="chat__text">gracias</div><time>17:43</time></div>
-                  <div class="chat__msg chat__msg--out chat__msg--a"><span class="chat__who">Asesor Sofía</span><div class="chat__text">Fue un placer atenderle que tenga excelente resto de jornada</div><time>17:43</time></div>
-                </div>
-              </div>
-            </div>
-            <p class="card__note">Datos personales de los clientes ocultados por privacidad.</p>
           </div>
 
           <div class="card reveal">
@@ -408,6 +259,109 @@ Ante cualquier eventualidad con el pedido, te notificaremos mediante mensaje.
         </aside>
       </div>
     </section>
+
+    <!-- ============ DEMO DEL CRM ============ -->
+    <section class="section demo-sec" id="demo-crm">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <div>
+            <span class="eyebrow">Pruébelo</span>
+            <h2 class="display">Del pedido al <em>CRM</em>, en vivo.</h2>
+            <p class="lead">Elija un canal, haga el pedido con los productos reales de Sofía y vea cómo el agente lo registra y cae como lead en el CRM. Luego arrastre la tarjeta entre etapas o ábrala para ver el detalle.</p>
+          </div>
+        </div>
+
+        <ol class="demo-steps reveal">
+          <li>Elija web, WhatsApp o llamada</li>
+          <li>Haga o escuche el pedido</li>
+          <li>El lead cae en el CRM con sus productos</li>
+          <li>Arrástrelo entre etapas</li>
+        </ol>
+
+        <div class="demo reveal" data-crm-demo data-logo="../../image/logo.png">
+          <!-- Canal -->
+          <div class="demo__channel">
+            <div class="chan-tabs" role="tablist" aria-label="Canal del pedido">
+              <button type="button" role="tab" aria-selected="true" data-chan="web"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Web</button>
+              <button type="button" role="tab" aria-selected="false" data-chan="wa"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>WhatsApp</button>
+              <button type="button" role="tab" aria-selected="false" data-chan="call"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Llamada</button>
+            </div>
+            <div class="device">
+              <!-- Web: catálogo de pedidos -->
+              <div class="screen" data-screen="web">
+                <div class="scr-head"><span class="scr-head__logo"></span><div><b>Pedidos Sofía</b><small>Catálogo en línea para clientes</small></div></div>
+                <div data-shop-view style="display:contents">
+                  <div class="shop__tools">
+                    <input class="shop__search" type="search" placeholder="Buscar por nombre o código…" aria-label="Buscar producto">
+                    <div class="shop__chips"></div>
+                  </div>
+                  <div class="shop__list"></div>
+                  <div class="shop__cart"><div data-cart-info></div><button class="btn-sm" type="button" data-cart-go>Continuar →</button></div>
+                </div>
+                <div class="checkout" data-checkout hidden>
+                  <h4>Confirmar pedido</h4>
+                  <label>Cliente<input data-f="cliente" value="Minimarket San Juan"></label>
+                  <label>CI o NIT (código de cliente)<input data-f="ci" value="77•••30"></label>
+                  <label>Ciudad<select data-f="ciudad"><option>Santa Cruz</option><option>Cochabamba</option><option>La Paz</option><option>Tarija</option><option>Beni</option><option>El Alto</option></select></label>
+                  <label>Entrega<select data-f="fecha"><option>Mañana</option><option>Pasado mañana</option><option>Jueves</option><option>Viernes</option></select></label>
+                  <ul data-checkout-list></ul>
+                  <div class="checkout__actions"><button class="btn-sm btn-sm--ghost" type="button" data-checkout-back>← Editar</button><button class="btn-sm" type="button" data-checkout-send>Enviar pedido</button></div>
+                </div>
+              </div>
+
+              <!-- WhatsApp -->
+              <div class="screen" data-screen="wa" hidden>
+                <div class="scr-head"><span class="scr-head__logo"></span><div><b>Sofía · Pedidos</b><small>Cuenta oficial de empresa · agente IA</small></div></div>
+                <div class="wa"><p style="margin:auto;text-align:center;font-size:12px;color:var(--muted)">Presione “Reproducir” para ver cómo el agente IA atiende un pedido por WhatsApp, incluso por nota de voz.</p></div>
+                <div class="scr-foot"><button class="btn-sm" type="button" data-wa-play>▶ Reproducir conversación</button></div>
+              </div>
+
+              <!-- Llamada -->
+              <div class="screen" data-screen="call" hidden>
+                <div class="call">
+                  <div class="call__top">
+                    <div class="call__avatar">CL</div>
+                    <div class="call__name">Cliente de Sofía</div>
+                    <div class="call__status">Llamada entrante…</div>
+                    <div class="call__wave"></div>
+                  </div>
+                  <div class="call__transcript"></div>
+                  <div class="call__actions">
+                    <button class="call__btn call__btn--answer" type="button" data-call-answer aria-label="Atender con el agente IA"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></button>
+                    <button class="call__btn call__btn--end" type="button" data-call-end aria-label="Colgar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo__link" aria-hidden="true">El pedido cae en el CRM</div>
+
+          <!-- CRM -->
+          <div class="crm">
+            <div class="crm__bar">
+              <div class="crm__brand"><span>CRM</span><b>Sofía · Pedidos</b></div>
+              <div class="crm__filters" role="group" aria-label="Filtrar por canal">
+                <button type="button" data-f="all" aria-pressed="true">Todos</button>
+                <button type="button" data-f="web" aria-pressed="false">Web</button>
+                <button type="button" data-f="wa" aria-pressed="false">WhatsApp</button>
+                <button type="button" data-f="call" aria-pressed="false">Llamada</button>
+              </div>
+              <div class="crm__stats"><div><small>Pedidos abiertos</small><b data-k="count">0</b></div><div><small>Unidades</small><b data-k="units">0</b></div></div>
+            </div>
+            <div class="crm__board"></div>
+            <div class="crm__foot">
+              <div>Pedidos por web<b data-k="web">0</b><div class="bar"><i data-bar="web"></i></div></div>
+              <div>Pedidos por WhatsApp<b data-k="wa">0</b><div class="bar"><i data-bar="wa"></i></div></div>
+              <div>Pedidos por llamada<b data-k="call">0</b><div class="bar"><i data-bar="call"></i></div></div>
+            </div>
+            <aside class="drawer" aria-hidden="true" aria-label="Ficha del pedido"><div class="drawer__head"></div><div class="drawer__body"></div></aside>
+            <div class="crm__toast" role="status" aria-live="polite"></div>
+          </div>
+        </div>
+        <p class="demo__note">Demo ilustrativa con los productos y códigos reales de Sofía; los clientes y pedidos son de ejemplo. Las imágenes de productos se mostrarán al agregarlas al catálogo.</p>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
@@ -422,5 +376,7 @@ Ante cualquier eventualidad con el pedido, te notificaremos mediante mensaje.
 
   <script src="../../index.js?v=20260929"></script>
   <script src="../cotizacion-pdf.js?v=20260929"></script>
+  <script src="productos.js?v=20261006"></script>
+  <script src="crm-demo.js?v=20261006d"></script>
 </body>
 </html>

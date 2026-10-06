@@ -277,7 +277,12 @@ a { color: inherit; }
 .hero__meta b { display: block; color: var(--ink); font-size: 15px; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
-.hero__art { position: relative; --check: 88px; }
+.hero__art {
+  position: relative;
+  background:
+    radial-gradient(circle at 60% 50%, rgba(227, 6, 19, .07), transparent 60%),
+    var(--paper);
+}
 .hero__art::after {
   content: "";
   position: absolute;
@@ -296,7 +301,7 @@ a { color: inherit; }
   place-items: center;
   background: var(--white);
   border-radius: 50%;
-  box-shadow: 0 40px 80px -30px rgba(122, 0, 8, .6), 0 0 0 10px rgba(255, 255, 255, .5);
+  box-shadow: 0 30px 70px -30px rgba(29, 20, 21, .3), 0 0 0 1px var(--line);
   z-index: 1;
   overflow: hidden;
   animation: float 7s ease-in-out infinite;
@@ -554,7 +559,8 @@ a { color: inherit; }
   border-radius: 40px;
   overflow: hidden;
   text-align: center;
-  --check: 64px;
+  background: var(--paper);
+  border: 1px solid var(--line);
 }
 .cta__panel {
   position: relative;
@@ -563,7 +569,7 @@ a { color: inherit; }
   padding: clamp(36px, 6vw, 64px);
   background: var(--white);
   border-radius: 32px;
-  box-shadow: 0 40px 80px -30px rgba(122, 0, 8, .6);
+  box-shadow: 0 24px 60px -30px rgba(29, 20, 21, .25);
 }
 .cta__panel h2 { font-size: clamp(32px, 4.4vw, 56px); }
 .cta__panel .lead { margin: 18px auto 30px; }
