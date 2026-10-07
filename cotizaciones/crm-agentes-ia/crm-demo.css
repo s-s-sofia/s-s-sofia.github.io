@@ -78,6 +78,9 @@
   display: flex; flex-direction: column;
 }
 .screen[hidden] { display: none !important; }
+/* Hijos flex de la pantalla: sin min-height 0 no aparece el scroll interno */
+.screen > *, .call > * { min-height: 0; }
+.call__transcript > *, .wa > * { flex-shrink: 0; }
 
 /* Cabecera común de pantalla */
 .scr-head {
@@ -224,7 +227,7 @@
 .call__wave i:nth-child(3n+1) { animation-delay: .45s; }
 .call__wave i:nth-child(4n) { animation-delay: .7s; }
 @keyframes wave { 50% { height: 28px; } }
-.call__transcript { flex: 1; overflow-y: auto; margin: 0 12px; padding: 12px; border-radius: 18px; background: rgba(0,0,0,.22); display: flex; flex-direction: column; gap: 8px; }
+.call__transcript { flex: 1; overflow-y: auto; overscroll-behavior: contain; margin: 0 12px; padding: 12px; border-radius: 18px; background: rgba(0,0,0,.22); display: flex; flex-direction: column; gap: 8px; }
 .call__line { font-size: 12.5px; line-height: 1.4; animation: pop .25s var(--ease); }
 .call__line b { display: block; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; opacity: .7; }
 .call__line--ai b { color: #ffd2d5; opacity: 1; }

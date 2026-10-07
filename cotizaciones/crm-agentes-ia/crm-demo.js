@@ -484,23 +484,61 @@
   };
   $("[data-wa-play]").addEventListener("click", playWA);
 
-  // ---------- Canal llamada: reproduce una llamada real ----------
+  // ---------- Canal llamada: conversación en vivo con el agente de voz (ElevenLabs) ----------
   const call = $(".call");
   const tr = $(".call__transcript");
   const status = $(".call__status");
-  const CALL_AUDIO = "audio_ejemplos/llamada-1.mp3";
-  const audio = new Audio();
-  audio.preload = "none";
+  const AGENT_ID = root.dataset.agentId;
+  const SDK = "https://cdn.jsdelivr.net/npm/@elevenlabs/client@1.26.0/+esm";
   const mmss = (t) => `${String(Math.floor(t / 60)).padStart(2, "0")}:${String(Math.floor(t % 60)).padStart(2, "0")}`;
+  let session = null;
   let live = false;
+  let callLines = [];
+  let started = 0;
+  let clock = null;
+
+  // Pedido dictado → códigos de producto (palabra clave + cantidad que la precede)
+  const NUM = { un: 1, uno: 1, una: 1, dos: 2, tres: 3, cuatro: 4, cinco: 5, seis: 6, siete: 7, ocho: 8, nueve: 9, diez: 10, doce: 12, quince: 15, veinte: 20, treinta: 30, cuarenta: 40, cincuenta: 50, sesenta: 60, cien: 100 };
+  const KEYS = [
+    [/brasa/, "501003"],
+    [/frial|pollo entero|pollos?\b/, "500106"],
+    [/filete/, "501602"],
+    [/alas?\b|alitas/, "501600"],
+    [/huevo|maple/, "590107"],
+    [/salchicha/, "534210"],
+    [/mortadela/, "530005"],
+    [/jam[oó]n/, "531501"],
+    [/tocino/, "521802"],
+    [/chorizo/, "533000"],
+    [/hamburguesa/, "540004"],
+    [/nugget/, "542004"],
+    [/papas?\b/, "544003"],
+  ];
+  const parseOrder = (text) => {
+    const words = text.toLowerCase().replace(/[^\p{L}\d ]/gu, " ").split(/\s+/).filter(Boolean);
+    const found = new Map();
+    words.forEach((w, i) => {
+      const hit = KEYS.find(([re]) => re.test(w));
+      // "pollos a la brasa": lo registra la palabra "brasa"
+      if (!hit || found.has(hit[1]) || (hit[1] === "500106" && words.slice(i + 1, i + 4).includes("brasa"))) return;
+      const q = words.slice(Math.max(0, i - 4), i).reverse().map((x) => (/^\d+$/.test(x) ? +x : NUM[x])).find(Boolean);
+      if (q) found.set(hit[1], q);
+    });
+    return [...found];
+  };
+
+  const addLine = (who, text) => {
+    $(".call__empty", tr)?.remove();
+    callLines.push([who, text]);
+    tr.insertAdjacentHTML("beforeend", `<p class="call__line${who === "Agente IA" ? " call__line--ai" : ""}"><b>${esc(who)}</b>${esc(text)}</p>`);
+    tr.scrollTop = tr.scrollHeight;
+  };
 
   const resetCall = () => {
     live = false;
-    audio.pause();
-    call.classList.add("is-ringing");
-    call.classList.remove("is-live");
-    status.textContent = "Llamada entrante…";
-    tr.innerHTML = `<p class="call__empty">Presione el botón verde para atender. Se reproducirá una llamada real de un cliente de Sofía y, al terminar, el pedido caerá en el CRM.</p>`;
+    call.classList.remove("is-live", "is-ringing");
+    status.textContent = "Agente IA de voz";
+    tr.innerHTML = `<p class="call__empty">Presione el botón verde para llamar al agente IA de Sofía y haga su pedido de viva voz. Al colgar, el pedido cae en el CRM.</p>`;
     $("[data-call-answer]").disabled = false;
     $("[data-call-end]").disabled = true;
   };
@@ -508,56 +546,69 @@
   const finishCall = () => {
     if (!live) return;
     live = false;
-    const dur = audio.duration || 72;
-    audio.pause();
+    clearInterval(clock);
+    const dur = (Date.now() - started) / 1000;
+    const s = session;
+    session = null;
+    s?.endSession().catch(() => {});
     call.classList.remove("is-live");
-    status.textContent = "Llamada finalizada · lead registrado en el CRM";
     $("[data-call-end]").disabled = true;
+    setTimeout(() => !live && ($("[data-call-answer]").disabled = false), 1200);
+    if (!callLines.length) return resetCall();
+    status.textContent = "Llamada finalizada · pedido registrado en el CRM";
+    const said = callLines.filter(([w]) => w === "Cliente").map(([, t]) => t).join(" ");
+    const items = parseOrder(said);
     pushLead({
-      cliente: "Cliente llamada 1",
+      cliente: "Cliente llamada en vivo",
       ci: "●●●●●●●●",
       ciudad: "Santa Cruz",
       canal: "call",
       fecha: "Según llamada",
-      items: [["500105", 30], ["500102", 20], ["501602", 8]],
-      real: true,
-      audio: CALL_AUDIO,
-      audioLabel: `Grabación real · 18/09/2026 · ${mmss(dur).replace(/^0/, "")}`,
-      conv: [["Central telefónica", "Llamada recibida y grabada; el lead se crea con la grabación adjunta para registrar el pedido."]],
+      items: items.length ? items : [["500106", 30], ["501602", 10]],
+      conv: [...callLines, ["Agente IA", `Registra el pedido en el CRM · llamada de ${mmss(dur)}`]],
     });
-    setTimeout(() => !live && ($("[data-call-answer]").disabled = false), 1200);
   };
 
-  const playCall = () => {
+  const playCall = async () => {
     $$("audio", root).forEach((a) => a.pause());
-    live = true;
     $("[data-call-answer]").disabled = true;
-    $("[data-call-end]").disabled = false;
-    call.classList.remove("is-ringing");
-    call.classList.add("is-live");
-    status.textContent = "En llamada · 00:00";
-    tr.innerHTML = `<div class="call__now"><b>Reproduciendo llamada real</b><span>Cliente de Sofía · 18/09/2026</span><div class="call__prog"><i></i></div><small data-call-time>00:00</small></div>`;
-    audio.src = CALL_AUDIO;
-    audio.currentTime = 0;
-    audio.play().catch(() => {
-      status.textContent = "Toque de nuevo para reproducir el audio";
+    status.textContent = "Llamando…";
+    call.classList.add("is-ringing");
+    tr.innerHTML = `<p class="call__empty">Permita el acceso al micrófono para hablar con el agente.</p>`;
+    callLines = [];
+    try {
+      const { Conversation } = await import(SDK);
+      session = await Conversation.startSession({
+        agentId: AGENT_ID,
+        onConnect: () => {
+          live = true;
+          started = Date.now();
+          call.classList.remove("is-ringing");
+          call.classList.add("is-live");
+          $("[data-call-end]").disabled = false;
+          tr.innerHTML = `<p class="call__empty">Conectado. Hable cuando el agente le salude.</p>`;
+          clock = setInterval(() => live && (status.textContent = `En llamada · ${mmss((Date.now() - started) / 1000)}`), 1000);
+        },
+        onMessage: (m) => {
+          const text = (m.message || "").trim();
+          if (text) addLine(m.source === "user" || m.role === "user" ? "Cliente" : "Agente IA", text);
+        },
+        onDisconnect: finishCall,
+        onError: (msg) => console.warn("ElevenLabs:", msg),
+      });
+    } catch (err) {
+      console.warn(err);
+      session = null;
+      call.classList.remove("is-ringing", "is-live");
+      status.textContent = "No se pudo iniciar la llamada";
+      tr.innerHTML = `<p class="call__empty">${/permission|notallowed/i.test(String(err)) ? "Se necesita permiso del micrófono para hablar con el agente." : "No se pudo conectar con el agente de voz. Intente de nuevo."}</p>`;
       $("[data-call-answer]").disabled = false;
-    });
+    }
   };
-  audio.addEventListener("timeupdate", () => {
-    if (!live) return;
-    const t = audio.currentTime;
-    const d = audio.duration || 0;
-    status.textContent = `En llamada · ${mmss(t)}`;
-    const bar = $(".call__prog i", tr);
-    if (bar && d) bar.style.width = (t / d) * 100 + "%";
-    const tt = $("[data-call-time]", tr);
-    if (tt) tt.textContent = `${mmss(t)} / ${d ? mmss(d) : "--:--"}`;
-  });
-  audio.addEventListener("ended", finishCall);
+
   $("[data-call-answer]").addEventListener("click", playCall);
   $("[data-call-end]").addEventListener("click", () => (live ? finishCall() : resetCall()));
-  // Al cambiar de canal se detiene la llamada en curso
+  // Al cambiar de canal se corta la llamada en curso
   $$(".chan-tabs button").forEach((b) => b.addEventListener("click", () => live && b.dataset.chan !== "call" && finishCall()));
 
   // Logo en cabeceras de pantalla
