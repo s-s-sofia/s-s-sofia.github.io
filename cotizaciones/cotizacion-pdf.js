@@ -103,6 +103,13 @@
       lead: text($(".page-hero .lead")),
       meta,
       scope: $$("ul.check li", cardByTitle("Alcance")).map(liRich),
+      meetings: $$(".meeting").map((m) => ({
+        title: text($(".meeting__head b", m)),
+        date: text($(".meeting__head time", m)),
+        people: $$(".meeting__people li", m).map((li) => [text($("b", li)), text($("span", li))]),
+        notes: $$(".meeting__notes:not(.meeting__next) li", m).map(text),
+        next: $$(".meeting__next li", m).map(text),
+      })),
       items,
       totals: {
         base: text($('.summary [data-out="base"]')),
@@ -121,9 +128,9 @@
         : null,
       opex: opex && {
         notice: text($(".notice div", opex)),
-        assumptions: `${val("waOrders")} pedidos por WhatsApp y ${val("calls")} llamadas de ${val("callMin")} min al mes; tipo de cambio Bs ${val("fx")} por US$.`,
+        assumptions: `${val("waOrders") ? val("waOrders") + " pedidos por WhatsApp y " : ""}${val("calls")} llamadas de ${val("callMin")} min al mes; tipo de cambio Bs ${val("fx")} por US$.`,
         rows: [
-          ["WhatsApp (Meta) y OpenAI", out("waTot")],
+          ...($('[data-o="waTot"]', opex) ? [["WhatsApp (Meta) y OpenAI", out("waTot")]] : []),
           ["Voz (ElevenLabs, plan " + out("plan") + ")", out("voiceTot")],
           ["Costo por llamada", out("perCall")],
         ],
@@ -231,6 +238,47 @@
       doc.text(v, x + 4, y + 11.5);
     });
     y += 19;
+
+    // Reuniones
+    if (data.meetings.length) {
+      section("Reuniones");
+      data.meetings.forEach((m, i) => {
+        need(14);
+        font(10.5, "bold");
+        doc.text(`${i + 1}. ${m.title}`, M, y + 4);
+        font(9, "normal", MUTED);
+        doc.text(m.date, W - M, y + 4, { align: "right" });
+        y += 7;
+        m.people.forEach(([name, role]) => {
+          need(5);
+          font(9, "bold");
+          doc.text(name, M + 5, y + 3);
+          const nw = doc.getTextWidth(name);
+          font(9, "normal", MUTED);
+          doc.text("·  " + role, M + 5 + nw + 2, y + 3);
+          y += 4.6;
+        });
+        const bullets = (list) => list.forEach((t) => {
+          font(9, "normal");
+          const lines = doc.splitTextToSize(t, CW - 10);
+          const step = 9 * 0.3528 * 1.35;
+          need(lines.length * step + 1);
+          color(RED, "fill");
+          doc.rect(M + 5.6, y + 1.3, 1.4, 1.4, "F");
+          doc.text(lines, M + 9, y + 3);
+          y += lines.length * step + 1;
+        });
+        bullets(m.notes);
+        if (m.next.length) {
+          need(10);
+          font(7.5, "bold", MUTED);
+          doc.text("PRÓXIMOS PASOS", M + 5, y + 4, { charSpace: 0.4 });
+          y += 6;
+          bullets(m.next);
+        }
+        y += 3;
+      });
+    }
 
     // Alcance
     section("Alcance del proyecto");
