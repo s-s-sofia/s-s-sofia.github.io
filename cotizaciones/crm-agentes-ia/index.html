@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>COT-2026-001 CRM de reservas con agentes IA | Servisofts × Sofía</title>
   <link rel="icon" href="../../image/logo.png">
-  <meta name="description" content="Plataforma de reserva de pedidos atendida por agentes de IA de voz y texto. Desarrollo a medida para Sofía Ltda. con entrega del código fuente.">
+  <meta name="description" content="Plataforma de reserva de pedidos con un agente de IA que atiende las llamadas de la línea 800 de Sofía. Desarrollo a medida para Sofía Ltda. con entrega del código fuente.">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Servisofts × Sofía">
   <meta property="og:locale" content="es_BO">
   <meta property="og:title" content="CRM de reservas con agentes IA | Servisofts × Sofía">
-  <meta property="og:description" content="Plataforma de reserva de pedidos atendida por agentes de IA de voz y texto. Desarrollo a medida para Sofía Ltda. con entrega del código fuente.">
+  <meta property="og:description" content="Plataforma de reserva de pedidos con un agente de IA que atiende las llamadas de la línea 800 de Sofía. Desarrollo a medida para Sofía Ltda. con entrega del código fuente.">
   <meta property="og:url" content="https://s-s-sofia.github.io/cotizaciones/crm-agentes-ia/">
   <meta property="og:image" content="https://s-s-sofia.github.io/image/og-image.jpg?v=20261007">
   <meta property="og:image:secure_url" content="https://s-s-sofia.github.io/image/og-image.jpg?v=20261007">
@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../style.css?v=20261006">
+  <link rel="stylesheet" href="../../style.css?v=20261009b">
   <link rel="stylesheet" href="crm-demo.css?v=20261009">
 </head>
 <body>
@@ -54,7 +54,7 @@
       <div class="wrap">
         <nav class="breadcrumb"><a href="../../index.html">Presentación</a> / <a href="../index.html">Cotizaciones</a> / COT-2026-001</nav>
         <h1 class="display reveal">CRM de reservas con <em>agentes IA</em></h1>
-        <p class="lead reveal" data-delay="1">Plataforma de reserva de pedidos atendida por agentes de inteligencia artificial de voz y texto. Desarrollo a medida para Sofía Ltda. con entrega del código fuente.</p>
+        <p class="lead reveal" data-delay="1">Plataforma de reserva de pedidos con un agente de inteligencia artificial que atiende las llamadas de la línea 800 de Sofía. Desarrollo a medida para Sofía Ltda. con entrega del código fuente.</p>
         <a class="btn btn--red reveal" data-delay="2" href="#demo-crm" style="margin-top:22px;position:relative">Ver demo del CRM →</a>
       </div>
     </section>
@@ -72,16 +72,43 @@
             </div>
           </div>
 
+          <div class="card reveal" id="reuniones">
+            <h2><em>Reuniones</em></h2>
+            <p class="card__lead">Registro de las reuniones con Sofía Ltda. sobre esta propuesta y los acuerdos que ajustan su alcance.</p>
+            <ol class="meetings">
+              <li class="meeting">
+                <div class="meeting__head">
+                  <span class="meeting__n">1</span>
+                  <div><b>Presentación de la propuesta</b><time datetime="2026-10-09">09/10/2026</time></div>
+                </div>
+                <div class="meeting__body">
+                  <h3>Participantes</h3>
+                  <ul class="meeting__people">
+                    <li><b>Ruddy Paz</b><span>CEO · Servisofts SRL</span></li>
+                    <li><b>Álvaro Pereira</b><span>Gerente de Negocios Digitales · Sofía Ltda.</span></li>
+                    <li><b>Katherine Hurtado</b><span>Jefe de Servicios Comerciales · Sofía Ltda.</span></li>
+                    <li><b>Mariana Melgar</b><span>Gestor de Formación y Excelencia Comercial · Sofía Ltda.</span></li>
+                  </ul>
+                  <h3>Acuerdos</h3>
+                  <ul class="meeting__notes">
+                    <li>La IA será solo de llamadas, atendidas por la línea 800 de la PBX on-premise de Sofía.</li>
+                    <li>Se retiran del alcance el agente IA de texto (WhatsApp y chat web) y la web de pedidos.</li>
+                    <li>El CRM suma la carga masiva de productos desde un archivo Excel.</li>
+                  </ul>
+                </div>
+              </li>
+            </ol>
+          </div>
+
           <div class="card reveal">
             <h2>Alcance del <em>proyecto</em></h2>
             <ul class="check">
               <li><b>CRM de reserva de pedidos:</b> catálogo y disponibilidad de productos, clientes y distribuidores, reservas con estados, usuarios con roles y reportes.</li>
-              <li><b>Agente IA de voz:</b> contesta llamadas, entiende al cliente, consulta disponibilidad y registra la reserva en el CRM; deriva a un asesor cuando hace falta.</li>
-              <li><b>Agente IA de texto:</b> atiende por WhatsApp y chat web, responde consultas de productos, toma reservas e informa el estado del pedido.</li>
-              <li><b>Integración con PBX telefónica:</b> el agente de voz se conecta a la central telefónica de Sofía, recibe las llamadas y las transfiere a internos o asesores cuando hace falta.</li>
-              <li><b>Integración con Meta Business:</b> conexión oficial con WhatsApp Business API para atender, confirmar pedidos y enviar notificaciones desde el número de Sofía.</li>
-              <li><b>Dashboards de KPIs:</b> indicadores mes a mes de llamadas, mensajes de WhatsApp, clientes y pedidos, con comparación entre meses y exportación a Excel.</li>
-              <li><b>Instalación de n8n en local:</b> plataforma de automatización instalada en los servidores de Sofía, que conecta el CRM, los agentes IA, WhatsApp y la PBX sin depender de servicios externos.</li>
+              <li><b>Carga masiva de productos desde Excel:</b> el equipo de Sofía sube un archivo Excel para crear o actualizar productos en bloque (códigos, nombres, presentaciones y precios), con validación y reporte de filas con errores antes de guardar.</li>
+              <li><b>Agente IA de llamadas:</b> contesta las llamadas de la línea 800, entiende al cliente, consulta disponibilidad y registra la reserva en el CRM; deriva a un asesor cuando hace falta.</li>
+              <li><b>Integración con la PBX on-premise:</b> el agente de voz se conecta a la central telefónica que Sofía tiene en sus instalaciones, recibe las llamadas de la línea 800 y las transfiere a internos o asesores cuando hace falta.</li>
+              <li><b>Dashboards de KPIs:</b> indicadores mes a mes de llamadas, clientes y pedidos, con comparación entre meses y exportación a Excel.</li>
+              <li><b>Instalación de n8n en local:</b> plataforma de automatización instalada en los servidores de Sofía, que conecta el CRM, el agente IA y la PBX sin depender de servicios externos.</li>
               <li><b>Servidor de archivos FTP/SFTP:</b> repositorio propio para imágenes de productos, grabaciones de llamadas y documentos (comprobantes y detalles de pedido), organizado y con acceso controlado.</li>
               <li><b>Desarrollo a medida:</b> construido sobre los procesos, productos y reglas de negocio de Sofía.</li>
               <li><b>Entrega del código fuente:</b> repositorio completo, documentación técnica y capacitación al equipo de Sofía.</li>
@@ -90,15 +117,11 @@
 
           <div class="card reveal" id="dashboards">
             <h2>Dashboards de <em>KPIs</em></h2>
-            <p class="card__lead">Un panel en el CRM con los indicadores clave de cada mes, para que Sofía vea cómo evoluciona la atención y las ventas.</p>
+            <p class="card__lead">Un panel en el CRM con los indicadores clave de cada mes, para que Sofía vea cómo evoluciona la atención telefónica y las ventas.</p>
             <div class="kpis">
               <div class="kpi">
                 <div class="kpi__head"><span class="kpi__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span><b>Llamadas</b></div>
                 <ul><li>Llamadas recibidas por mes</li><li>Atendidas por el agente IA vs. derivadas a asesor</li><li>Duración promedio</li><li>Horas y días de mayor demanda</li></ul>
-              </div>
-              <div class="kpi">
-                <div class="kpi__head"><span class="kpi__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span><b>Mensajes</b></div>
-                <ul><li>Conversaciones y mensajes de WhatsApp por mes</li><li>Tiempo de respuesta</li><li>Notas de voz recibidas</li><li>Consultas que terminan en pedido</li></ul>
               </div>
               <div class="kpi">
                 <div class="kpi__head"><span class="kpi__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6"/></svg></span><b>Clientes</b></div>
@@ -106,7 +129,7 @@
               </div>
               <div class="kpi">
                 <div class="kpi__head"><span class="kpi__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></span><b>Pedidos</b></div>
-                <ul><li>Pedidos por mes y por canal</li><li>Monto total reservado</li><li>Productos más pedidos</li><li>Pedidos confirmados, ajustados y cancelados</li></ul>
+                <ul><li>Pedidos por mes</li><li>Monto total reservado</li><li>Productos más pedidos</li><li>Pedidos confirmados, ajustados y cancelados</li></ul>
               </div>
             </div>
             <div class="kpis__foot"><span>Filtro por mes</span><span>Comparación mes a mes</span><span>Exportación a Excel</span><span>Acceso por roles</span></div>
@@ -119,7 +142,7 @@
               <div class="stack__item"><span class="stack__tag">Base de datos</span><b>PostgreSQL</b><small>Pedidos, clientes, catálogo e historial</small><em>Sin costo</em></div>
               <div class="stack__item"><span class="stack__tag">Backend</span><b>Python</b><small>API del CRM, lógica de reservas e integraciones</small><em>Sin costo</em></div>
               <div class="stack__item"><span class="stack__tag">Frontend</span><b>React</b><small>Panel web del CRM para el equipo de Sofía</small><em>Sin costo</em></div>
-              <div class="stack__item"><span class="stack__tag">Automatización</span><b>n8n</b><small>Edición autoalojada en los servidores de Sofía</small><em>Sin costo</em></div>
+              <div class="stack__item"><span class="stack__tag">Automatización</span><b>n8n</b><small>Edición autoalojada en los servidores de Sofía, conecta el CRM, el agente IA y la PBX</small><em>Sin costo</em></div>
               <div class="stack__item"><span class="stack__tag">Archivos</span><b>SFTP</b><small>Servidor de imágenes, grabaciones y documentos</small><em>Sin costo</em></div>
               <div class="stack__item"><span class="stack__tag">Despliegue</span><b>Docker</b><small>Contenedores para instalar, actualizar y respaldar todo en los servidores de Sofía</small><em>Sin costo</em></div>
             </div>
@@ -135,11 +158,10 @@
                 <tbody>
                   <tr data-price="5000"><td>Descubrimiento y diseño<small>Levantamiento de procesos, pantallas del CRM y guiones conversacionales</small></td><td>4 sem.</td><td class="num" data-cell="price"></td></tr>
                   <tr data-price="28000"><td>CRM de reserva de pedidos<small>Catálogo, clientes, reservas, estados, roles, panel y reportes</small></td><td>6 sem.</td><td class="num" data-cell="price"></td></tr>
-                  <tr data-price="18000"><td>Agente IA de voz<small>Atención de llamadas, toma de pedidos, derivación a asesor</small></td><td>4 sem.</td><td class="num" data-cell="price"></td></tr>
-                  <tr data-price="14000"><td>Agente IA de texto<small>WhatsApp y chat web, consultas, reservas y estado del pedido</small></td><td>3 sem.</td><td class="num" data-cell="price"></td></tr>
-                  <tr data-price="7000"><td>Integración con PBX telefónica<small>Conexión del agente de voz a la central de Sofía (SIP/troncales), transferencia a internos y registro de llamadas</small></td><td>2 sem.</td><td class="num" data-cell="price"></td></tr>
-                  <tr data-price="5000"><td>Integración con Meta Business (WhatsApp)<small>WhatsApp Business API: número oficial, plantillas de mensajes y avisos automáticos al cliente</small></td><td>2 sem.</td><td class="num" data-cell="price"></td></tr>
-                  <tr data-price="0" data-label="Incluido"><td>Dashboards de KPIs<small>Llamadas, mensajes, clientes y pedidos por mes · comparación mes a mes · exportación a Excel</small></td><td>2 sem.</td><td class="num" data-cell="price"></td></tr>
+                  <tr data-price="0" data-label="Incluido"><td>Carga masiva de productos desde Excel<small>Importación de productos en bloque con plantilla Excel, validación y reporte de errores</small></td><td>1 sem.</td><td class="num" data-cell="price"></td></tr>
+                  <tr data-price="18000"><td>Agente IA de llamadas<small>Atención de la línea 800, toma de pedidos, derivación a asesor</small></td><td>4 sem.</td><td class="num" data-cell="price"></td></tr>
+                  <tr data-price="7000"><td>Integración con la PBX on-premise<small>Conexión del agente de voz a la central de Sofía y su línea 800 (SIP/troncales), transferencia a internos y registro de llamadas</small></td><td>2 sem.</td><td class="num" data-cell="price"></td></tr>
+                  <tr data-price="0" data-label="Incluido"><td>Dashboards de KPIs<small>Llamadas, clientes y pedidos por mes · comparación mes a mes · exportación a Excel</small></td><td>2 sem.</td><td class="num" data-cell="price"></td></tr>
                   <tr data-price="4000"><td>Entrega del código fuente<small>Repositorio, documentación técnica y capacitación</small></td><td>1 sem.</td><td class="num" data-cell="price"></td></tr>
                   <tr data-price="0" data-label="Incluido"><td>Mantenimiento 3 meses<small>Sin costo tras la puesta en producción · monitoreo, ajustes de los agentes y actualizaciones</small></td><td>3 meses</td><td class="num" data-cell="price"></td></tr>
                   <tr data-price="8000"><td><label><input type="checkbox"> Llamadas salientes con IA</label><small>Opcional · confirmación de pedidos y recordatorios</small></td><td>2 sem.</td><td class="num" data-cell="price"></td></tr>
@@ -151,25 +173,14 @@
 
           <div class="card reveal" id="costos-operacion">
             <h2>Costo mensual de <em>operación</em></h2>
-            <p class="card__lead">Estimación del consumo mensual de los servicios externos que usa la plataforma. Ajuste los volúmenes para ver el costo al instante.</p>
+            <p class="card__lead">Estimación del consumo mensual del servicio de voz con IA que atiende las llamadas. Ajuste los volúmenes para ver el costo al instante.</p>
             <div class="notice">
               <span class="notice__icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg></span>
-              <div><b>Este costo no se paga a Servisofts SRL.</b> Sofía lo paga directamente a cada proveedor (Meta por WhatsApp, OpenAI y ElevenLabs), con cuentas a nombre de Sofía y su propio medio de pago. Servisofts SRL solo configura las cuentas y no cobra comisión sobre el consumo.</div>
+              <div><b>Este costo no se paga a Servisofts SRL.</b> Sofía lo paga directamente al proveedor (ElevenLabs), con una cuenta a nombre de Sofía y su propio medio de pago. Servisofts SRL solo configura la cuenta y no cobra comisión sobre el consumo.</div>
             </div>
 
             <div class="opex" data-opex>
               <div class="opex__inputs">
-                <fieldset>
-                  <legend>WhatsApp</legend>
-                  <label>Pedidos por WhatsApp al mes<input type="number" min="0" step="100" value="2000" data-in="waOrders"></label>
-                  <label>Mensajes del agente por pedido<input type="number" min="1" step="1" value="6" data-in="waMsgs"></label>
-                  <label>Avisos de plantilla por pedido<small>Confirmación / en camino</small><input type="number" min="0" step="1" value="1" data-in="waUtil"></label>
-                  <label>Mensajes de marketing al mes<small>Ofertas y promociones</small><input type="number" min="0" step="100" value="0" data-in="waMkt"></label>
-                </fieldset>
-                <fieldset>
-                  <legend>OpenAI · GPT-4o mini</legend>
-                  <label>Notas de voz al mes<small>Se transcriben a texto (≈ 30 s cada una)</small><input type="number" min="0" step="100" value="600" data-in="voiceNotes"></label>
-                </fieldset>
                 <fieldset>
                   <legend>Llamadas</legend>
                   <label>Llamadas al mes<input type="number" min="0" step="100" value="1000" data-in="calls"></label>
@@ -180,15 +191,6 @@
 
               <div class="opex__results">
                 <div class="opex__block">
-                  <h3>WhatsApp · Meta</h3>
-                  <div class="summary__row"><span>Mensajes de servicio<small data-o="waSvcN"></small></span><span data-o="waSvc"></span></div>
-                  <div class="summary__row"><span>Plantillas de utilidad<small data-o="waUtilN"></small></span><span data-o="waUtil"></span></div>
-                  <div class="summary__row"><span>Marketing<small data-o="waMktN"></small></span><span data-o="waMkt"></span></div>
-                  <div class="summary__row"><span>OpenAI · respuestas del bot<small data-o="waAiN"></small></span><span data-o="waAi"></span></div>
-                  <div class="summary__row"><span>OpenAI · notas de voz<small data-o="waSttN"></small></span><span data-o="waStt"></span></div>
-                  <div class="summary__row opex__sub"><span>Subtotal WhatsApp</span><span data-o="waTot"></span></div>
-                </div>
-                <div class="opex__block">
                   <h3>Voz · ElevenLabs</h3>
                   <div class="summary__row"><span>Plan <b data-o="plan"></b><small data-o="planN"></small></span><span data-o="planFee"></span></div>
                   <div class="summary__row"><span>Minutos adicionales<small data-o="extraN"></small></span><span data-o="extra"></span></div>
@@ -196,7 +198,7 @@
                   <div class="summary__row"><span>Costo por llamada</span><span data-o="perCall"></span></div>
                 </div>
                 <div class="opex__total">
-                  <small>Costo mensual estimado · pagado por Sofía a los proveedores</small>
+                  <small>Costo mensual estimado · pagado por Sofía al proveedor</small>
                   <b data-o="total"></b>
                   <span data-o="totalUsd"></span>
                 </div>
@@ -207,17 +209,11 @@
               <table class="rates">
                 <thead><tr><th>Tarifa de referencia</th><th class="num">US$</th></tr></thead>
                 <tbody>
-                  <tr><td>WhatsApp · mensaje de servicio (respuestas del agente)<small>Desde el 1/10/2026: 1.000 gratis por número al mes, luego se cobra cada mensaje</small></td><td class="num">0,0113</td></tr>
-                  <tr><td>WhatsApp · plantilla de utilidad (confirmaciones, avisos)<small>Desde el 1/10/2026 también se cobra dentro de la ventana de 24 h</small></td><td class="num">0,0113</td></tr>
-                  <tr><td>WhatsApp · plantilla de marketing (ofertas)</td><td class="num">0,0740</td></tr>
                   <tr><td>ElevenLabs · minuto de llamada adicional (incluye voz y LLM)<small>Planes: Pro US$ 99 (1.238 min) · Scale US$ 299 (3.738 min) · Business US$ 990 (12.375 min)</small></td><td class="num">0,08</td></tr>
-                  <tr><td>OpenAI · GPT-4o mini, por millón de tokens<small>Entrada US$ 0,15 · entrada en caché US$ 0,075 · salida US$ 0,60</small></td><td class="num">0,15 / 0,60</td></tr>
-                  <tr><td>OpenAI · consumo estimado por respuesta del bot<small>≈ 3.000 tokens de instrucciones y catálogo (en caché) + 1.200 de conversación + 200 de respuesta</small></td><td class="num">≈ 0,0005</td></tr>
-                  <tr><td>OpenAI · transcripción de notas de voz (gpt-4o-mini-transcribe)</td><td class="num">0,003 / min</td></tr>
                 </tbody>
               </table>
             </div>
-            <p class="card__note">Tarifas de Meta para Bolivia vigentes desde el 1/10/2026 y precios públicos de ElevenLabs Agents a septiembre de 2026. Tipo de cambio oficial del Banco Central de Bolivia (flotante): Bs 12,05 por US$ al 29/09/2026; actualícelo al momento de la firma. No incluye el costo de las líneas telefónicas de la PBX de Sofía. Los valores iniciales son supuestos: ajústelos con los volúmenes reales.</p>
+            <p class="card__note">Precios públicos de ElevenLabs Agents a septiembre de 2026. Tipo de cambio oficial del Banco Central de Bolivia (flotante): Bs 12,05 por US$ al 29/09/2026; actualícelo al momento de la firma. No incluye el costo de la línea 800 ni de las líneas telefónicas de la PBX de Sofía. Los valores iniciales son supuestos: ajústelos con los volúmenes reales.</p>
           </div>
 
           <div class="card reveal">
@@ -226,7 +222,7 @@
             <div class="payments">
               <div class="payment"><b>Mes 1</b><span>Al firmar · descubrimiento y diseño</span><br><strong data-installment="4"></strong></div>
               <div class="payment"><b>Mes 2</b><span>Desarrollo del CRM</span><br><strong data-installment="4"></strong></div>
-              <div class="payment"><b>Mes 3</b><span>Agentes IA e integraciones</span><br><strong data-installment="4"></strong></div>
+              <div class="payment"><b>Mes 3</b><span>Agente IA de llamadas e integración con la PBX</span><br><strong data-installment="4"></strong></div>
               <div class="payment"><b>Mes 4</b><span>Piloto · entrega del código fuente</span><br><strong data-installment="4"></strong></div>
             </div>
           </div>
@@ -239,8 +235,8 @@
               <li>El código fuente y la documentación pasan a ser propiedad de Sofía Ltda. al completar el pago.</li>
               <li>Tecnologías de código abierto (PostgreSQL, Python, React, n8n, SFTP y Docker): sin costo de licencias ni suscripciones.</li>
               <li>Sofía Ltda. provee el servidor o máquina virtual donde se instalan n8n y el servidor de archivos (Linux, con espacio de almacenamiento acorde al volumen de grabaciones e imágenes).</li>
-              <li>Sofía Ltda. provee el acceso a su PBX (SIP/API) y una cuenta de Meta Business verificada para WhatsApp; Servisofts SRL acompaña la configuración.</li>
-              <li>El consumo de servicios externos (WhatsApp de Meta, OpenAI y ElevenLabs) no está incluido en este monto ni se paga a Servisofts SRL: Sofía lo paga directamente a cada proveedor, con cuentas a su nombre (ver <a href="#costos-operacion">costo mensual de operación</a>).</li>
+              <li>Sofía Ltda. provee el acceso a su PBX on-premise (SIP/API) y a la línea 800 que atenderá el agente IA; Servisofts SRL acompaña la configuración.</li>
+              <li>El consumo del servicio de voz con IA (ElevenLabs) no está incluido en este monto ni se paga a Servisofts SRL: Sofía lo paga directamente al proveedor, con una cuenta a su nombre (ver <a href="#costos-operacion">costo mensual de operación</a>).</li>
               <li>Incluye 3 meses de mantenimiento sin costo tras la puesta en producción; desde el 4.º mes en producción, el mantenimiento es de Bs. 3.000 mensuales (opcional).</li>
               <li>Garantía de 3 meses sobre errores de funcionamiento tras la puesta en producción.</li>
               <li>Montos expresados en bolivianos (Bs.).</li>
@@ -389,8 +385,8 @@
     </div>
   </footer>
 
-  <script src="../../index.js?v=20260929"></script>
-  <script src="../cotizacion-pdf.js?v=20260929"></script>
+  <script src="../../index.js?v=20261009"></script>
+  <script src="../cotizacion-pdf.js?v=20261009"></script>
   <script src="productos.js?v=20261006"></script>
   <script src="crm-demo.js?v=20261009"></script>
 </body>

@@ -89,7 +89,8 @@
       { name: "Scale", fee: 299, mins: 3738 },
       { name: "Business", fee: 990, mins: 12375 },
     ];
-    const num = (k) => Math.max(0, parseFloat(opex.querySelector(`[data-in="${k}"]`).value) || 0);
+    // Los campos que la cotización no muestra (p. ej. WhatsApp) cuentan como 0
+    const num = (k) => Math.max(0, parseFloat(opex.querySelector(`[data-in="${k}"]`)?.value) || 0);
     const set = (k, v) => opex.querySelectorAll(`[data-o="${k}"]`).forEach((el) => (el.textContent = v));
     const int = (n) => Math.round(n).toLocaleString("es-BO");
 

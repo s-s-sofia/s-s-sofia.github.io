@@ -728,6 +728,25 @@ table.items { width: 100%; min-width: 560px; border-collapse: collapse; font-siz
   text-transform: uppercase;
 }
 
+/* ---------- Reuniones con el cliente ---------- */
+.meetings { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 12px; }
+.meeting { border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; }
+.meeting__head { display: flex; align-items: center; gap: 14px; }
+.meeting__head > div { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; flex: 1; min-width: 0; }
+.meeting__head b { font: 600 19px/1.2 var(--display); }
+.meeting__head time { font-size: 13px; font-weight: 700; color: var(--muted); }
+.meeting__n {
+  flex: none; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%;
+  background: var(--red); color: var(--white); font-weight: 700; font-size: 14px;
+}
+.meeting__body h3 { margin: 16px 0 8px; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.meeting__people { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.meeting__people li { padding: 10px 14px; border-radius: 12px; background: var(--paper); display: flex; flex-direction: column; }
+.meeting__people span { font-size: 13px; color: var(--muted); line-height: 1.35; }
+.meeting__notes { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.meeting__notes li::marker { color: var(--red); }
+@media (max-width: 560px) { .meeting__people { grid-template-columns: minmax(0, 1fr); } .meeting { padding: 14px; } }
+
 /* ---------- Casos reales: audios y chats ---------- */
 .card__lead { color: var(--muted); max-width: 62ch; }
 .card__sub {
