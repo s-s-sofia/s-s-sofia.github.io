@@ -107,7 +107,8 @@
         title: text($(".meeting__head b", m)),
         date: text($(".meeting__head time", m)),
         people: $$(".meeting__people li", m).map((li) => [text($("b", li)), text($("span", li))]),
-        notes: $$(".meeting__notes li", m).map(text),
+        notes: $$(".meeting__notes:not(.meeting__next) li", m).map(text),
+        next: $$(".meeting__next li", m).map(text),
       })),
       items,
       totals: {
@@ -257,7 +258,7 @@
           doc.text("·  " + role, M + 5 + nw + 2, y + 3);
           y += 4.6;
         });
-        m.notes.forEach((t) => {
+        const bullets = (list) => list.forEach((t) => {
           font(9, "normal");
           const lines = doc.splitTextToSize(t, CW - 10);
           const step = 9 * 0.3528 * 1.35;
@@ -267,6 +268,14 @@
           doc.text(lines, M + 9, y + 3);
           y += lines.length * step + 1;
         });
+        bullets(m.notes);
+        if (m.next.length) {
+          need(10);
+          font(7.5, "bold", MUTED);
+          doc.text("PRÓXIMOS PASOS", M + 5, y + 4, { charSpace: 0.4 });
+          y += 6;
+          bullets(m.next);
+        }
         y += 3;
       });
     }
