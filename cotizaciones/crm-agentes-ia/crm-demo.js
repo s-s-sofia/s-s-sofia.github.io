@@ -152,10 +152,10 @@
     const shown = l.items.slice(0, 3);
     return `<article class="olead" draggable="true" data-id="${l.id}" tabindex="0" aria-label="Pedido ${l.id} de ${esc(l.cliente)}">
       <div class="olead__top"><span class="olead__av">${esc(initials(l.cliente))}</span>
-        <div><div class="olead__name">${esc(l.cliente)}</div><div class="olead__id">${l.id} · ${esc(l.ciudad)}</div></div></div>
-      <ul class="olead__items">${shown.map(([c, q]) => `<li><span>${esc(byCode[c]?.desc || c)}</span><b>× ${q}</b></li>`).join("")}${l.items.length > 3 ? `<li><span>+ ${l.items.length - 3} productos más</span></li>` : ""}${!l.items.length && l.raw ? `<li><span>Texto del cliente: “${esc(l.raw)}”</span></li>` : ""}${!l.items.length && l.audio ? `<li><span>🔊 ${esc(l.audioLabel || "Grabación de la llamada")}</span></li>` : ""}</ul>
+        <div><div class="olead__name">${esc(l.cliente)}</div><div class="olead__id">${l.id} · ${esc(l.ciudad || l.direccion || "")}</div></div></div>
+      <ul class="olead__items">${shown.map(([c, q]) => `<li><span>${esc(byCode[c]?.desc || c)}</span><b>× ${q}</b></li>`).join("")}${l.items.length > 3 ? `<li><span>+ ${l.items.length - 3} productos más</span></li>` : ""}${(!l.items.length || l.sheet) && l.raw ? `<li><span>${l.sheet ? "Pedido" : "Texto del cliente"}: “${esc(l.raw)}”</span></li>` : ""}${!l.items.length && l.audio ? `<li><span>🔊 ${esc(l.audioLabel || "Grabación de la llamada")}</span></li>` : ""}</ul>
       ${l.metric ? `<div class="olead__metric"><b>${esc(l.metric[0])}</b> ${esc(l.metric[1].split(" · ")[0])}</div>` : ""}
-      <div class="olead__foot"><span style="display:flex;gap:4px"><span class="chip chip--${l.canal}">${ICON[l.canal]}${CHANNEL[l.canal]}</span>${l.real ? '<span class="chip chip--real">Caso real</span>' : l.canal !== "web" ? '<span class="chip chip--ia">IA</span>' : ""}</span><span>${l.when || ago(l.at)}</span></div>
+      <div class="olead__foot"><span style="display:flex;gap:4px"><span class="chip chip--${l.canal}">${ICON[l.canal]}${CHANNEL[l.canal]}</span>${l.sheet ? '<span class="chip chip--real">Llamada real</span>' : l.real ? '<span class="chip chip--real">Caso real</span>' : l.canal !== "web" ? '<span class="chip chip--ia">IA</span>' : ""}</span><span>${l.when || ago(l.at)}</span></div>
     </article>`;
   };
 
@@ -238,18 +238,20 @@
     const l = leads.find((x) => x.id === id);
     if (!l) return;
     openId = id;
-    $(".drawer__head").innerHTML = `<div><span class="chip chip--${l.canal}">${ICON[l.canal]}${CHANNEL[l.canal]}</span><h4>${esc(l.cliente)}</h4><small style="color:var(--muted)">${l.id} · ${l.when || ago(l.at)}${l.real ? " · caso real, datos ocultos" : ""}</small></div><button class="drawer__close" type="button" aria-label="Cerrar">×</button>`;
+    $(".drawer__head").innerHTML = `<div><span class="chip chip--${l.canal}">${ICON[l.canal]}${CHANNEL[l.canal]}</span><h4>${esc(l.cliente)}</h4><small style="color:var(--muted)">${l.id} · ${l.when || ago(l.at)}${l.sheet ? " · registrado por el agente de voz" : l.real ? " · caso real, datos ocultos" : ""}</small></div><button class="drawer__close" type="button" aria-label="Cerrar">×</button>`;
     $(".drawer__body").innerHTML = `
       <div class="drawer__grid">
         <div><small>CI / NIT</small><b>${esc(l.ci)}</b></div>
-        <div><small>Ciudad</small><b>${esc(l.ciudad)}</b></div>
+        ${l.sheet ? `<div><small>Teléfono</small><b>${esc(l.telefono || "—")}</b></div>` : `<div><small>Ciudad</small><b>${esc(l.ciudad)}</b></div>`}
         <div><small>Entrega</small><b>${esc(l.fecha)}</b></div>
         <div><small>Unidades</small><b>${units(l)}</b></div>
       </div>
+      ${l.direccion ? `<div><h5>Dirección de entrega</h5><p class="drawer__raw">${esc(l.direccion)}</p></div>` : ""}
+      ${l.resumen ? `<div><h5>Resumen de la llamada</h5><p class="drawer__raw">${esc(l.resumen)}</p></div>` : ""}
       ${l.metric ? `<div class="drawer__metric"><b>${esc(l.metric[0])}</b><span>${esc(l.metric[1])} con el proceso actual. Con el agente IA, el pedido se registra en la misma conversación.</span></div>` : ""}
       ${l.audio ? `<div><h5>Grabación de la llamada</h5><div class="drawer__audio"><audio controls preload="none" src="${esc(l.audio)}"></audio><small>${esc(l.audioLabel || "")}</small></div></div>` : ""}
-      ${l.raw ? `<div><h5>Pedido escrito por el cliente</h5><p class="drawer__raw">“${esc(l.raw)}”</p></div>` : ""}
-      <div><h5>Productos del pedido</h5>${!l.items.length ? `<p class="drawer__raw">${l.audio ? "Pedido dictado en la llamada: escuche la grabación. Con el agente IA, los productos y cantidades se registran automáticamente con su código." : "Sin interpretar en el proceso actual: el asesor lo registró a mano."}</p>` : ""}<ul class="drawer__items"${l.items.length ? "" : " hidden"}>${l.items
+      ${l.raw ? `<div><h5>${l.sheet ? "Pedido registrado por el agente" : "Pedido escrito por el cliente"}</h5><p class="drawer__raw">“${esc(l.raw)}”</p></div>` : ""}
+      <div><h5>Productos del pedido</h5>${!l.items.length ? `<p class="drawer__raw">${l.sheet ? "El agente registró el pedido como texto (arriba); no se pudo asociar a códigos de producto." : l.audio ? "Pedido dictado en la llamada: escuche la grabación. Con el agente IA, los productos y cantidades se registran automáticamente con su código." : "Sin interpretar en el proceso actual: el asesor lo registró a mano."}</p>` : ""}<ul class="drawer__items"${l.items.length ? "" : " hidden"}>${l.items
         .map(([c, q]) => {
           const p = byCode[c] || { codigo: c, desc: c, linea: "" };
           return `<li>${thumb(p, true)}<span><code>${esc(p.codigo)} · ${esc(p.linea)}</code>${esc(p.desc)}</span><b>× ${q}</b></li>`;
@@ -611,6 +613,92 @@
   // Al cambiar de canal se corta la llamada en curso
   $$(".chan-tabs button").forEach((b) => b.addEventListener("click", () => live && b.dataset.chan !== "call" && finishCall()));
 
+  // ---------- Pedidos reales de las llamadas (Google Sheet que llena n8n) ----------
+  // La hoja debe estar compartida como "Cualquier persona con el enlace". Se lee por
+  // gviz en CSV y se vuelve a consultar cada minuto: los pedidos nuevos caen solos.
+  const SHEET_ID = root.dataset.sheetId;
+  const parseCSV = (text) => {
+    const rows = [[]];
+    let cell = "", q = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (q) {
+        if (c === '"' && text[i + 1] === '"') (cell += '"'), i++;
+        else if (c === '"') q = false;
+        else cell += c;
+      } else if (c === '"') q = true;
+      else if (c === ",") rows[rows.length - 1].push(cell), (cell = "");
+      else if (c === "\n") rows[rows.length - 1].push(cell), (cell = ""), rows.push([]);
+      else if (c !== "\r") cell += c;
+    }
+    rows[rows.length - 1].push(cell);
+    return rows.filter((r) => r.some((x) => x.trim()));
+  };
+  // Acepta los nombres de columna actuales de la hoja y sus variantes
+  const COLS = {
+    id: ["id", "conversation_id"],
+    fecha: ["fecha", "fecha_llamada"],
+    nit: ["nit", "ci"],
+    nombre: ["nombre", "cliente"],
+    telefono: ["telefono", "teléfono"],
+    direccion: ["direccion", "dirección"],
+    pedido: ["pedido"],
+    entrega: ["fecha_entrega", "entrega"],
+    resumen: ["resumen"],
+  };
+  const fmtWhen = (t) => {
+    const d = new Date(t);
+    return isNaN(d) ? "" : `${String(d.getDate()).padStart(2, "0")}/${String(d.getMonth() + 1).padStart(2, "0")} · ${d.toTimeString().slice(0, 5)}`;
+  };
+  const sheetSeen = new Set();
+  let sheetN = 0;
+  const syncSheet = async (first) => {
+    if (!SHEET_ID) return;
+    try {
+      const res = await fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&_=${Date.now()}`);
+      if (!res.ok) throw new Error(res.status);
+      const [head, ...rows] = parseCSV(await res.text());
+      const h = head.map((x) => x.trim().toLowerCase());
+      const idx = Object.fromEntries(Object.entries(COLS).map(([k, names]) => [k, h.findIndex((x) => names.includes(x))]));
+      const get = (r, k) => (idx[k] >= 0 ? (r[idx[k]] || "").trim() : "");
+      const added = [];
+      rows.forEach((r, i) => {
+        const key = get(r, "id") || `fila-${i}`;
+        if (sheetSeen.has(key) || !(get(r, "nombre") || get(r, "pedido"))) return;
+        sheetSeen.add(key);
+        const t = Date.parse(get(r, "fecha"));
+        const pedido = get(r, "pedido");
+        const l = {
+          id: "LL-" + String(++sheetN).padStart(3, "0"),
+          sheet: true,
+          conversationId: get(r, "id"),
+          cliente: get(r, "nombre") || "Cliente llamada",
+          ci: get(r, "nit") || "—",
+          telefono: get(r, "telefono"),
+          direccion: get(r, "direccion"),
+          ciudad: "",
+          canal: "call",
+          etapa: 0,
+          at: isNaN(t) ? Date.now() : t,
+          when: isNaN(t) ? "" : fmtWhen(t),
+          fecha: get(r, "entrega") || "Según llamada",
+          items: parseOrder(pedido),
+          raw: pedido,
+          resumen: get(r, "resumen"),
+          conv: [],
+        };
+        leads.push(l);
+        added.push(l);
+      });
+      if (!added.length) return;
+      const last = added[added.length - 1];
+      render(first ? null : last.id);
+      if (!first) toast(`Nuevo pedido ${last.id} por llamada · ${last.cliente}`);
+    } catch (err) {
+      console.warn("No se pudo leer la hoja de pedidos:", err);
+    }
+  };
+
   // Logo en cabeceras de pantalla
   $$(".scr-head__logo").forEach((el) => (el.innerHTML = LOGO ? `<img src="${esc(LOGO)}" alt="">` : "S"));
   $$(".call__wave").forEach((w) => (w.innerHTML = "<i></i>".repeat(28)));
@@ -618,5 +706,9 @@
   renderShop();
   resetCall();
   render();
-  setInterval(() => render(), 60000);
+  syncSheet(true);
+  setInterval(() => {
+    render();
+    syncSheet(false);
+  }, 60000);
 })();
