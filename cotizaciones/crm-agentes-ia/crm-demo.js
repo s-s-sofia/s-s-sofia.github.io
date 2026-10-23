@@ -37,10 +37,10 @@
   let seq = 1040;
   const now = Date.now();
   const leads = [
-    { cliente: "Pensión Los Tajibos", ci: "48•••21", ciudad: "Santa Cruz", canal: "wa", etapa: 0, mins: 4, fecha: "Mañana", items: [["500104", 30], ["590107", 10]] },
-    { cliente: "Hamburguesería Rex", ci: "39•••04", ciudad: "Cochabamba", canal: "web", etapa: 1, mins: 41, fecha: "Jueves", items: [["540004", 3], ["544004", 2]] },
-    { cliente: "Minimarket El Trompillo", ci: "55•••12", ciudad: "Santa Cruz", canal: "wa", etapa: 2, mins: 75, fecha: "Hoy", items: [["550100", 24], ["560101", 12], ["535700", 24]] },
-    { cliente: "Supermercado Norte", ci: "10•••47", ciudad: "Santa Cruz", canal: "web", etapa: 3, mins: 300, fecha: "Hoy", items: [["500106", 120], ["542004", 10], ["650101", 8]] },
+    { cliente: "Pensión Los Tajibos", ci: "48•••21", ciudad: "Santa Cruz", canal: "call", etapa: 0, mins: 4, fecha: "Mañana", items: [["500104", 30], ["590107", 10]] },
+    { cliente: "Hamburguesería Rex", ci: "39•••04", ciudad: "Cochabamba", canal: "call", etapa: 1, mins: 41, fecha: "Jueves", items: [["540004", 3], ["544004", 2]] },
+    { cliente: "Minimarket El Trompillo", ci: "55•••12", ciudad: "Santa Cruz", canal: "call", etapa: 2, mins: 75, fecha: "Hoy", items: [["550100", 24], ["560101", 12], ["535700", 24]] },
+    { cliente: "Supermercado Norte", ci: "10•••47", ciudad: "Santa Cruz", canal: "call", etapa: 3, mins: 300, fecha: "Hoy", items: [["500106", 120], ["542004", 10], ["650101", 8]] },
   ].map((l) => ({ ...l, id: "P-" + ++seq, at: now - l.mins * 60000, conv: [] }));
 
   // Casos reales de WhatsApp (13/09/2026), con datos personales ocultos
@@ -132,7 +132,8 @@
       conv: [],
     },
   ].map((l, i) => ({ ...l, real: true, id: "R-0" + (i + 1), at: now - (6 + i) * 86400000 }));
-  leads.push(...REAL);
+  // La propuesta cubre solo el canal de llamadas: el CRM muestra solo esos casos
+  leads.push(...REAL.filter((l) => l.canal === "call"));
 
   let filter = "all";
   let openId = null;
@@ -182,7 +183,9 @@
     const total = leads.length || 1;
     ["web", "wa", "call"].forEach((c) => {
       const n = leads.filter((l) => l.canal === c).length;
-      $(`[data-k=${c}]`).textContent = n;
+      const k = $(`[data-k=${c}]`);
+      if (!k) return;
+      k.textContent = n;
       $(`[data-bar=${c}]`).style.width = (n / total) * 100 + "%";
     });
   };
